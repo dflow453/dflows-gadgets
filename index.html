@@ -1,0 +1,1454 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DFLOWS GADGETS | Buy & Resell Tech</title>
+  <meta name="description" content="DFLOWS GADGETS - Buy quality phones, laptops, iPads and tablets. Transparent grading, warranty, fast UK dispatch." />
+
+  <style>
+    :root{
+      --bg:#0b0e14; --card:#121826; --soft:#0f1420;
+      --text:#eef2ff; --muted:#a6afc3; --line:#222b3e;
+      --accent:#4f8cff; --accent2:#22c55e; --danger:#ef4444;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+    .muted{color:var(--muted)}
+    .hidden{display:none !important}
+
+    /* Top strip */
+    .topbar{
+      background:linear-gradient(90deg, rgba(79,140,255,.20), rgba(34,197,94,.15));
+      border-bottom:1px solid var(--line);
+      font-size:13px;color:var(--muted);
+    }
+    .topbar .row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;flex-wrap:wrap}
+    .toplinks{display:flex;gap:14px;flex-wrap:wrap}
+    .toplinks a{opacity:.95}
+    .toplinks a:hover{opacity:1;text-decoration:underline}
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(11,14,20,.82);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .head{
+      display:grid;
+      grid-template-columns: 240px 1fr 320px;
+      gap:12px;
+      align-items:center;
+      padding:14px 0;
+    }
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{
+      width:42px;height:42px;border-radius:16px;
+      border:1px solid var(--line);
+      display:grid;place-items:center;
+      background: radial-gradient(circle at 30% 30%, rgba(79,140,255,.28), transparent 55%),
+                  radial-gradient(circle at 70% 70%, rgba(34,197,94,.20), transparent 55%);
+      box-shadow: var(--shadow);
+      font-weight:900;
+    }
+    .brand b{display:block;font-size:18px;letter-spacing:.2px}
+    .brand small{color:var(--muted);display:block;margin-top:2px;font-size:12px}
+
+    .search{
+      display:flex;gap:10px;align-items:center;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:10px 12px;
+      background:rgba(18,24,38,.65);
+    }
+    .search input{
+      width:100%;
+      background:transparent;border:0;outline:0;
+      color:var(--text);font-size:14px;
+    }
+
+    .nav{
+      display:flex;gap:10px;flex-wrap:wrap;
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .nav a{border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:rgba(18,24,38,.45)}
+    .nav a:hover{text-decoration:underline}
+
+    .actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+    .btn{
+      border:1px solid var(--line);
+      background:transparent;
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:16px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .btn:hover{filter:brightness(1.06)}
+    .btn.primary{background:var(--accent);border-color:transparent;color:#08101f}
+    .btn.green{background:var(--accent2);border-color:transparent;color:#07140c}
+    .btn.sm{padding:9px 10px;border-radius:14px;font-size:13px}
+    .pill{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-width:22px;height:22px;padding:0 6px;
+      border-radius:999px;border:1px solid var(--line);
+      font-size:12px;color:var(--text);opacity:.95
+    }
+
+    /* Chips */
+    .chipbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .chip{
+      border:1px solid var(--line);
+      color:var(--muted);
+      background:rgba(18,24,38,.55);
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:12px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .chip.active{border-color:rgba(79,140,255,.55);color:var(--text)}
+
+    /* Hero */
+    .hero{padding:18px 0 8px}
+    .heroGrid{display:grid;grid-template-columns: 1.2fr .8fr;gap:14px;align-items:stretch}
+    .banner{
+      border:1px solid var(--line);
+      border-radius:24px;
+      overflow:hidden;
+      background:linear-gradient(135deg, rgba(79,140,255,.18), rgba(18,24,38,.75));
+      box-shadow: var(--shadow);
+    }
+    .bannerInner{padding:18px}
+    .banner h1{margin:0;font-size:34px;line-height:1.08}
+    .banner p{margin:10px 0 0;color:var(--muted);max-width:62ch}
+    .bannerActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+    .miniCards{display:grid;gap:14px}
+    .mini{
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:rgba(18,24,38,.65);
+      padding:16px;
+    }
+    .mini b{display:block}
+    .mini small{color:var(--muted);display:block;margin-top:6px}
+    .mini .tag{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+    .tag span{
+      font-size:12px;color:var(--muted);
+      border:1px solid var(--line);
+      border-radius:999px;padding:6px 10px;
+      background:rgba(11,14,20,.35);
+    }
+
+    /* Sections */
+    .section{padding:16px 0 22px}
+    .section h2{margin:0;font-size:22px}
+    .section p{margin:6px 0 0;color:var(--muted);font-size:13px}
+    .panel{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:rgba(18,24,38,.55);
+      padding:14px;
+    }
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+    .four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}
+
+    /* Category tiles */
+    .cats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:14px}
+    .cat{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(18,24,38,.55);
+      padding:12px;
+      cursor:pointer;
+      min-height:84px;
+      display:flex;flex-direction:column;justify-content:space-between;
+      transition:.15s;
+    }
+    .cat:hover{transform:translateY(-2px)}
+    .cat b{font-size:14px}
+    .cat small{color:var(--muted);font-size:12px}
+
+    /* Filters + Products */
+    .bar{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    select, input.text{
+      border:1px solid var(--line);
+      background:rgba(18,24,38,.55);
+      color:var(--text);
+      border-radius:16px;
+      padding:10px 12px;
+      outline:none;
+    }
+
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+    .card{
+      border:1px solid var(--line);
+      border-radius:22px;
+      overflow:hidden;
+      background:rgba(18,24,38,.65);
+      box-shadow: 0 10px 24px rgba(0,0,0,.20);
+      display:flex;flex-direction:column;
+    }
+    .thumb{height:150px;background:#0d1220}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .body{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
+    .title{font-weight:900;line-height:1.15}
+    .meta{color:var(--muted);font-size:12px}
+    .badges{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 10px}
+    .badge.a{border-color:rgba(34,197,94,.45);color:#dffbe8}
+    .badge.b{border-color:rgba(79,140,255,.45);color:#e6efff}
+    .badge.c{border-color:rgba(239,68,68,.40);color:#ffe7e7}
+    .priceRow{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:auto}
+    .price{font-size:18px;font-weight:950}
+    .was{font-size:12px;color:var(--muted);text-decoration:line-through}
+    .cardActions{display:flex;gap:8px}
+
+    /* Cart Drawer */
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:.2s;z-index:60}
+    .overlay.show{opacity:1;pointer-events:auto}
+    .drawer{
+      position:fixed;top:0;right:0;height:100vh;width:min(420px,100%);
+      background:#0f1420;border-left:1px solid var(--line);
+      transform:translateX(105%);transition:.25s;z-index:70;
+      display:flex;flex-direction:column;
+    }
+    .drawer.open{transform:translateX(0)}
+    .dHead{display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid var(--line)}
+    .dBody{padding:14px;display:flex;flex-direction:column;gap:12px;overflow:auto;flex:1}
+    .dFoot{padding:14px;border-top:1px solid var(--line)}
+    .item{display:flex;gap:10px}
+    .item img{height:58px;width:58px;border-radius:14px;object-fit:cover;border:1px solid var(--line)}
+    .qty{display:flex;align-items:center;gap:8px}
+    .qty button{width:32px;height:32px;border-radius:12px}
+
+    /* Modals */
+    .modalWrap{position:fixed;inset:0;display:none;place-items:center;z-index:80}
+    .modalWrap.show{display:grid}
+    .modal{
+      width:min(980px,96vw);
+      border-radius:24px;
+      background:#0f1420;
+      border:1px solid var(--line);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      position:relative;
+      z-index:81;
+    }
+    .mTop{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:14px;border-bottom:1px solid var(--line)}
+    .mGrid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+    .mGrid img{width:100%;height:360px;object-fit:cover;display:block}
+    .mBody{padding:14px}
+    .mBody ul{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:13px}
+    .mBody li{margin:6px 0}
+    .mActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+    /* Footer */
+    footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted)}
+    .foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    .footLinks{display:flex;gap:14px;flex-wrap:wrap}
+    .footLinks a:hover{text-decoration:underline}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .head{grid-template-columns: 1fr; gap:10px}
+      .actions{justify-content:flex-start}
+      .heroGrid{grid-template-columns:1fr}
+      .cats{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .four{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .two{grid-template-columns:1fr}
+      .mGrid{grid-template-columns:1fr}
+      .mGrid img{height:260px}
+    }
+    @media (max-width:520px){
+      .cats{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top strip -->
+  <div class="topbar">
+    <div class="wrap row">
+      <div>Fast UK dispatch • Tested devices • Transparent grading</div>
+      <div class="toplinks">
+        <a href="#shop">Shop</a>
+        <a href="#sell">Sell</a>
+        <a href="#grading">Grading</a>
+        <a href="#warranty">Warranty</a>
+        <a href="#returns">Returns</a>
+        <a href="#shipping">Shipping</a>
+        <a href="#track">Track Order</a>
+        <a href="#faq">FAQ</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="wrap head">
+      <a class="brand" href="#top" onclick="scrollToSection('top')">
+        <div class="logo">DF</div>
+        <div>
+          <b>DFLOWS GADGETS</b>
+          <small>Phones • Laptops • iPads • Tablets</small>
+        </div>
+      </a>
+
+      <div>
+        <div class="search">
+          <span class="muted">🔎</span>
+          <input id="searchGlobal" placeholder="Search Samsung A16, iPad 8th Gen, Chromebook..." />
+        </div>
+
+        <div class="nav">
+          <a href="#shop">Shop</a>
+          <a href="#sell">Sell to DFLOWS</a>
+          <a href="#grading">Grading</a>
+          <a href="#track">Track</a>
+        </div>
+
+        <div class="chipbar" id="chipbar">
+          <div class="chip active" data-chip="All">All</div>
+          <div class="chip" data-chip="Phones">Phones</div>
+          <div class="chip" data-chip="Laptops">Laptops</div>
+          <div class="chip" data-chip="iPads">iPads</div>
+          <div class="chip" data-chip="Tablets">Tablets</div>
+          <div class="chip" data-chip="Deals">Deals</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn green" onclick="scrollToSection('sell')">Sell to DFLOWS</button>
+        <button class="btn" id="cartBtn">🛒 Cart <span id="cartCount" class="pill" style="display:none;margin-left:6px"></span></button>
+        <button class="btn primary" onclick="scrollToSection('shop')">Shop</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="top">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="heroGrid">
+        <div class="banner">
+          <div class="bannerInner">
+            <h1>Quality gadgets.<br><span style="color:var(--muted)">Better prices.</span></h1>
+            <p>
+              DFLOWS GADGETS sells quality pre-owned and refurbished tech — fully tested, honestly graded (A/B/C),
+              and backed by warranty. Some items can be <b>Order & We Source It</b> (estimated dispatch shown).
+            </p>
+            <div class="bannerActions">
+              <button class="btn primary" onclick="scrollToSection('shop')">Browse products</button>
+              <button class="btn" onclick="scrollToSection('grading')">Grading & warranty</button>
+              <button class="btn" onclick="openCheckout()">Quick checkout (demo)</button>
+            </div>
+
+            <div class="four">
+              <div class="mini"><b>✅ Tested</b><small>Diagnostics + checks</small></div>
+              <div class="mini"><b>🧾 Transparent</b><small>Clear grading</small></div>
+              <div class="mini"><b>🚚 Fast</b><small>UK dispatch</small></div>
+              <div class="mini"><b>🛡️ Warranty</b><small>3–12 months</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="miniCards">
+          <div class="mini">
+            <b>Today’s Deals</b>
+            <small>Best value items — limited stock.</small>
+            <div class="tag">
+              <span>Deals</span><span>Grade A/B</span><span>Unlocked</span>
+            </div>
+          </div>
+          <div class="mini">
+            <b>Student Laptops</b>
+            <small>Chromebooks + budget Windows laptops for uni/work.</small>
+            <div class="tag">
+              <span>Warranty</span><span>Ready to go</span><span>Fast dispatch</span>
+            </div>
+          </div>
+          <div class="mini">
+            <b>Order & We Source It</b>
+            <small>If an item is not in stock, we can source it quickly and show an estimated dispatch date.</small>
+            <div class="tag">
+              <span>Transparent</span><span>Estimated dispatch</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section">
+      <h2>Shop by category</h2>
+      <p>Fast browsing like CeX — but DFLOWS style.</p>
+
+      <div class="cats">
+        <div class="cat" onclick="setCategory('Phones')"><b>Phones</b><small>Samsung • Motorola</small></div>
+        <div class="cat" onclick="setCategory('Laptops')"><b>Laptops</b><small>Windows • Chromebooks</small></div>
+        <div class="cat" onclick="setCategory('iPads')"><b>iPads</b><small>6th Gen • 8th Gen</small></div>
+        <div class="cat" onclick="setCategory('Tablets')"><b>Tablets</b><small>Samsung • Android</small></div>
+        <div class="cat" onclick="setCategory('Deals')"><b>Deals</b><small>Best value right now</small></div>
+        <div class="cat" onclick="setCategory('All')"><b>All products</b><small>Browse everything</small></div>
+      </div>
+    </section>
+
+    <!-- SHOP -->
+    <section class="section" id="shop">
+      <div class="bar">
+        <div>
+          <h2>Shop</h2>
+          <p>Filter by category and grade. Click View to choose storage/RAM and see dispatch time.</p>
+        </div>
+
+        <div class="filters">
+          <select id="categorySelect">
+            <option value="All">All categories</option>
+            <option value="Phones">Phones</option>
+            <option value="Laptops">Laptops</option>
+            <option value="iPads">iPads</option>
+            <option value="Tablets">Tablets</option>
+            <option value="Deals">Deals</option>
+          </select>
+
+          <select id="gradeSelect">
+            <option value="All">All grades</option>
+            <option value="A">Grade A</option>
+            <option value="B">Grade B</option>
+            <option value="C">Grade C</option>
+          </select>
+
+          <select id="sortSelect">
+            <option value="popular">Sort: Popular</option>
+            <option value="low">Price: Low</option>
+            <option value="high">Price: High</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid" id="productGrid"></div>
+    </section>
+
+    <!-- SELL -->
+    <section class="section" id="sell">
+      <h2>Sell to DFLOWS (Instant estimate)</h2>
+      <p>Select a device and condition to get a quick estimate. Final quote depends on storage/battery/accessories.</p>
+
+      <div class="two">
+        <div class="panel">
+          <b>Quote calculator</b>
+          <div style="display:grid;gap:10px;margin-top:10px">
+            <select id="sellDevice"><option value="">Choose device</option></select>
+            <select id="sellGrade">
+              <option value="A">Grade A</option><option value="B">Grade B</option><option value="C">Grade C</option>
+            </select>
+            <select id="sellIncludes">
+              <option value="full">Includes charger + accessories</option>
+              <option value="partial">Missing charger/accessories</option>
+            </select>
+            <input class="text" id="sellNotes" placeholder="Notes (e.g. 128GB, battery 88%, small scratch)" />
+            <button class="btn green" onclick="calcSellQuote()">Get estimate</button>
+          </div>
+
+          <div class="panel" style="margin-top:12px" id="sellResult">
+            <b>Estimate:</b>
+            <div class="muted" style="margin-top:6px">Choose a device and click “Get estimate”.</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <b>How selling works</b>
+          <ul>
+            <li>We confirm model/storage/condition and accessories.</li>
+            <li>Agree price and payment method.</li>
+            <li>Drop-off / collection / post (choose what you offer).</li>
+            <li>Payment after verification.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRADING -->
+    <section class="section" id="grading">
+      <h2>Grading guide (A / B / C)</h2>
+      <p>We grade cosmetics honestly. Function must be 100% for every device we sell.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px">
+        <div class="panel">
+          <b>Grade A — Excellent</b>
+          <p class="muted">Minimal signs of use. Screen and casing look very clean.</p>
+        </div>
+        <div class="panel">
+          <b>Grade B — Very good</b>
+          <p class="muted">Light marks/scratches. Fully working. Best value for most buyers.</p>
+        </div>
+        <div class="panel">
+          <b>Grade C — Good</b>
+          <p class="muted">Visible wear. Fully working. Best price option.</p>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:14px">
+        <b>Order & We Source It (friendly pre-order)</b>
+        <p class="muted">
+          If an item shows <b>Order & We Source It</b>, it means it’s not currently on-hand but we can source it quickly.
+          You’ll always see an estimated dispatch date before you buy.
+        </p>
+      </div>
+    </section>
+
+    <!-- WARRANTY -->
+    <section class="section" id="warranty">
+      <h2>Warranty</h2>
+      <p>Warranty covers faults under normal use. It does not cover accidental damage or liquid damage.</p>
+      <div class="two">
+        <div class="panel">
+          <b>Covered</b>
+          <ul>
+            <li>Hardware faults under normal use</li>
+            <li>Charging faults (not caused by damage)</li>
+            <li>Speaker/mic faults (not caused by liquid damage)</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <b>Not covered</b>
+          <ul>
+            <li>Cracked screens, impact damage</li>
+            <li>Water/liquid damage</li>
+            <li>Unauthorised repairs</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RETURNS -->
+    <section class="section" id="returns">
+      <h2>Returns & refunds</h2>
+      <p>Clear returns policy builds confidence. Adjust timeframes to what you offer.</p>
+      <div class="two">
+        <div class="panel">
+          <b>Change of mind</b>
+          <p class="muted">Example: returns within 14 days in same condition.</p>
+        </div>
+        <div class="panel">
+          <b>Faulty items</b>
+          <p class="muted">Contact support with your order ID and we’ll arrange return/repair/replacement.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHIPPING -->
+    <section class="section" id="shipping">
+      <h2>Shipping & delivery</h2>
+      <p>Set expectations clearly: dispatch times, tracking, and delivery options.</p>
+      <div class="panel" style="margin-top:14px">
+        <ul>
+          <li>UK dispatch (Standard 2–4 working days)</li>
+          <li>Express option (if you offer it)</li>
+          <li>Tracking provided</li>
+          <li>Secure packaging</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TRACK ORDER -->
+    <section class="section" id="track">
+      <h2>Track order</h2>
+      <p>Enter your Order ID to see status (demo). This works for orders created in the checkout demo.</p>
+
+      <div class="two">
+        <div class="panel">
+          <b>Order lookup</b>
+          <div style="display:grid;gap:10px;margin-top:10px">
+            <input class="text" id="trackId" placeholder="Enter Order ID (e.g. DF-123456)" />
+            <button class="btn primary" onclick="trackOrder()">Track</button>
+          </div>
+        </div>
+        <div class="panel" id="trackResult">
+          <b>Status</b>
+          <div class="muted" style="margin-top:6px">Enter an Order ID and click Track.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <h2>FAQ</h2>
+      <div class="two">
+        <div class="panel">
+          <b>Are devices unlocked?</b>
+          <p class="muted">Yes, unless stated otherwise.</p>
+          <hr style="border:0;border-top:1px solid var(--line);margin:12px 0" />
+          <b>Do you check iCloud/Google lock?</b>
+          <p class="muted">Yes. Devices are verified and reset before dispatch.</p>
+        </div>
+        <div class="panel">
+          <b>What’s included?</b>
+          <p class="muted">As stated on the listing (typically device + charger unless stated).</p>
+          <hr style="border:0;border-top:1px solid var(--line);margin:12px 0" />
+          <b>What does “Order & We Source It” mean?</b>
+          <p class="muted">It means we’ll source it from our supplier after purchase. Estimated dispatch date is shown.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <h2>About DFLOWS GADGETS</h2>
+      <p>We make quality tech affordable by selling tested, graded, warrantied devices.</p>
+
+      <div class="panel" style="margin-top:14px">
+        <b>Our promise</b>
+        <ul>
+          <li>Transparent grading (A/B/C)</li>
+          <li>Devices tested and reset</li>
+          <li>Warranty for peace of mind</li>
+          <li>Fast UK dispatch</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <p>Replace these with your real WhatsApp number and support email.</p>
+
+      <div class="two">
+        <div class="panel">
+          <b>WhatsApp</b>
+          <p class="muted">Set it in code: <code style="color:var(--text)">WHATSAPP_NUMBER_E164</code></p>
+          <button class="btn green" style="margin-top:10px" onclick="openWhatsAppGeneral()">Chat on WhatsApp</button>
+        </div>
+        <div class="panel">
+          <b>Email</b>
+          <p class="muted">support@dflowsgadgets.co.uk</p>
+          <hr style="border:0;border-top:1px solid var(--line);margin:12px 0" />
+          <b>Hours</b>
+          <p class="muted">10am–6pm (UK)</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <div>
+          <b style="color:var(--text)">DFLOWS GADGETS</b>
+          <div style="margin-top:6px">Quality resale gadgets with transparent grading and warranty.</div>
+          <div style="margin-top:10px;font-size:12px">© <span id="year"></span> DFLOWS GADGETS</div>
+        </div>
+        <div class="footLinks">
+          <a href="#shop">Shop</a>
+          <a href="#sell">Sell</a>
+          <a href="#grading">Grading</a>
+          <a href="#track">Track</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Cart Drawer -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer">
+    <div class="dHead">
+      <strong>Your Cart</strong>
+      <button class="btn" onclick="closeCart()">Close</button>
+    </div>
+    <div class="dBody" id="cartItems"></div>
+    <div class="dFoot">
+      <div style="display:flex;justify-content:space-between">
+        <span class="muted">Subtotal</span>
+        <strong id="subtotal">£0.00</strong>
+      </div>
+      <div class="muted" style="font-size:12px;margin-top:6px">Shipping calculated at checkout.</div>
+      <button class="btn primary" style="width:100%;margin-top:10px" onclick="openCheckout()">Checkout</button>
+      <div class="muted" style="font-size:12px;margin-top:8px">Demo checkout. Later: Stripe/Shopify.</div>
+    </div>
+  </aside>
+
+  <!-- Product Modal -->
+  <div class="modalWrap" id="productModal">
+    <div class="overlay show" onclick="closeProduct()" style="position:absolute"></div>
+    <div class="modal">
+      <div class="mTop">
+        <div>
+          <strong id="mTitle">Product</strong>
+          <div class="muted" id="mMeta" style="font-size:12px;margin-top:4px"></div>
+        </div>
+        <button class="btn" onclick="closeProduct()">Close</button>
+      </div>
+      <div class="mGrid">
+        <img id="mImg" alt="Product image" />
+        <div class="mBody">
+          <div class="badges" id="mBadges"></div>
+
+          <div style="margin-top:10px;font-size:26px;font-weight:950" id="mPrice"></div>
+          <div class="muted" id="mWas" style="margin-top:6px"></div>
+          <div class="muted" id="mNote" style="margin-top:10px"></div>
+
+          <div class="panel" style="margin-top:12px">
+            <b>Choose option</b>
+            <div style="margin-top:10px;display:grid;gap:10px">
+              <select id="mVariant"></select>
+              <div class="muted" id="mDispatch" style="font-size:12px"></div>
+              <a class="btn green" id="mWhatsApp" target="_blank" rel="noopener">WhatsApp to buy</a>
+            </div>
+          </div>
+
+          <div class="panel" style="margin-top:12px">
+            <b>Specs</b>
+            <div class="muted" id="mSpecs" style="margin-top:6px"></div>
+          </div>
+
+          <ul id="mList"></ul>
+
+          <div class="mActions">
+            <button class="btn primary" id="mAdd">Add to cart</button>
+            <button class="btn" onclick="scrollToSection('contact'); closeProduct();">Ask a question</button>
+          </div>
+
+          <div class="muted" id="mStock" style="margin-top:10px;font-size:12px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="modalWrap" id="checkoutModal">
+    <div class="overlay show" onclick="closeCheckout()" style="position:absolute"></div>
+    <div class="modal">
+      <div class="mTop">
+        <div>
+          <strong>Checkout (demo)</strong>
+          <div class="muted" style="font-size:12px;margin-top:4px">Creates an Order ID you can track in “Track order”.</div>
+        </div>
+        <button class="btn" onclick="closeCheckout()">Close</button>
+      </div>
+      <div class="mGrid">
+        <div class="mBody">
+          <div class="panel">
+            <b>Customer details</b>
+            <div style="display:grid;gap:10px;margin-top:10px">
+              <input class="text" id="coName" placeholder="Full name" />
+              <input class="text" id="coEmail" placeholder="Email" />
+              <input class="text" id="coPhone" placeholder="Phone (optional)" />
+              <input class="text" id="coAddress" placeholder="Delivery address" />
+              <select id="coShipping">
+                <option value="standard">Standard (2–4 working days)</option>
+                <option value="express">Express (Next day)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="panel" style="margin-top:12px" id="sourceNoticeBox">
+            <b>Order & We Source It notice</b>
+            <div class="muted" style="margin-top:6px">
+              If your order includes “Order & We Source It” items, we’ll source them after purchase.
+              Estimated dispatch is shown on the product page. You can cancel before dispatch.
+            </div>
+            <label style="display:flex;gap:10px;align-items:flex-start;margin-top:10px">
+              <input type="checkbox" id="sourceAccept" />
+              <span class="muted">I understand this order includes “Order & We Source It” items and accept the estimated dispatch time.</span>
+            </label>
+          </div>
+
+          <div class="panel" style="margin-top:12px">
+            <b>Payment</b>
+            <div class="muted" style="margin-top:6px">Demo checkout. Next: Stripe/Shopify integration.</div>
+            <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap">
+              <span class="badge">Card</span>
+              <span class="badge">PayPal</span>
+              <span class="badge">Bank transfer</span>
+            </div>
+          </div>
+
+          <div class="mActions">
+            <button class="btn primary" onclick="placeOrder()">Place order (demo)</button>
+            <button class="btn" onclick="closeCheckout()">Cancel</button>
+          </div>
+
+          <div class="panel hidden" id="orderSuccess" style="margin-top:12px">
+            <b>Order created ✅</b>
+            <div class="muted" style="margin-top:6px">Order ID: <span id="orderIdText"></span></div>
+            <div class="muted" style="margin-top:6px">Go to Track order section to check status.</div>
+          </div>
+        </div>
+
+        <div class="mBody">
+          <div class="panel">
+            <b>Order summary</b>
+            <div class="muted" style="margin-top:6px" id="coSummary">Your cart is empty.</div>
+            <hr style="border:0;border-top:1px solid var(--line);margin:12px 0" />
+            <div style="display:flex;justify-content:space-between">
+              <span class="muted">Subtotal</span>
+              <strong id="coSubtotal">£0.00</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px">
+              <span class="muted">Shipping</span>
+              <strong id="coShipCost">£0.00</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px">
+              <span class="muted">Total</span>
+              <strong id="coTotal">£0.00</strong>
+            </div>
+          </div>
+
+          <div class="panel" style="margin-top:12px">
+            <b>Why buy from DFLOWS?</b>
+            <ul>
+              <li>Transparent grading (A/B/C)</li>
+              <li>Warranty included</li>
+              <li>Fast UK dispatch</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const GBP = (n) => new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP'}).format(n);
+  const CART_KEY = "DFLOWS_CART_V2_VARIANTS";
+  const ORDERS_KEY = "DFLOWS_ORDERS_V1";
+
+  // ===== WhatsApp (CHANGE THIS) =====
+  const WHATSAPP_NUMBER_E164 = "447377970202"; // no '+'
+  function waLink(message){
+    return `https://wa.me/${WHATSAPP_NUMBER_E164}?text=${encodeURIComponent(message)}`;
+  }
+  function openWhatsAppGeneral(){
+    const msg = "Hi DFLOWS GADGETS, I want to buy a device. Please share what you have available today.";
+    window.open(waLink(msg), "_blank", "noopener");
+  }
+  window.openWhatsAppGeneral = openWhatsAppGeneral;
+
+  // Friendly word for pre-order (still clear)
+  const SOURCE_LABEL = "Order & We Source It";
+
+  // Availability: in_stock | source
+  const products = [
+    {
+      id:"a16", name:"Samsung Galaxy A16", category:"Phones", brand:"Samsung",
+      grade:"A", warranty:6, deal:true,
+      img:"https://images.unsplash.com/photo-1523206489230-c012c64b2b48?auto=format&fit=crop&w=1200&q=80",
+      availability:{ status:"in_stock", stock:12, leadDays:0 },
+      variants:[
+        { sku:"a16-64", label:"64GB", price:149.99, was:169.99 },
+        { sku:"a16-128", label:"128GB", price:169.99, was:189.99 }
+      ],
+      specs:{ network:"Unlocked", os:"Android" },
+      note:"Grade A — excellent condition, fully tested and ready to use.",
+      highlights:["Unlocked","Tested calls/mic","Camera checked","Fast UK dispatch"]
+    },
+    {
+      id:"motoe15", name:"Motorola Moto E15", category:"Phones", brand:"Motorola",
+      grade:"B", warranty:6, deal:true,
+      img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80",
+      availability:{ status:"in_stock", stock:10, leadDays:0 },
+      variants:[
+        { sku:"motoe15-64", label:"64GB", price:79.99, was:null }
+      ],
+      specs:{ network:"Unlocked", os:"Android" },
+      note:"Grade B — light cosmetic wear, fully functional and tested.",
+      highlights:["Unlocked","Great budget phone","Tested battery/charging","Cleaned & reset"]
+    },
+    {
+      id:"ipad8", name:"Apple iPad 8th Gen", category:"iPads", brand:"Apple",
+      grade:"B", warranty:6, deal:true,
+      img:"https://images.unsplash.com/photo-1587033411391-5d9f9f0ad6db?auto=format&fit=crop&w=1200&q=80",
+      availability:{ status:"source", stock:0, leadDays:5 },
+      variants:[
+        { sku:"ipad8-32", label:"32GB (Wi-Fi)", price:199.99, was:229.99 },
+        { sku:"ipad8-128", label:"128GB (Wi-Fi)", price:239.99, was:269.99 }
+      ],
+      specs:{ network:"Wi-Fi", os:"iPadOS" },
+      note:"Grade B — light marks, fully tested. Great for school and streaming.",
+      highlights:["Wi-Fi","Tested & reset","Charger included","Good battery"]
+    },
+    {
+      id:"tabA11", name:"Samsung Galaxy Tab A11", category:"Tablets", brand:"Samsung",
+      grade:"A", warranty:6, deal:false,
+      img:"https://images.unsplash.com/photo-1561154464-82e9adf327c3?auto=format&fit=crop&w=1200&q=80",
+      availability:{ status:"in_stock", stock:8, leadDays:0 },
+      variants:[
+        { sku:"taba11-64", label:"64GB (Wi-Fi)", price:129.99, was:null }
+      ],
+      specs:{ network:"Wi-Fi", os:"Android" },
+      note:"Grade A — excellent condition, smooth for browsing and media.",
+      highlights:["Wi-Fi","Screen checked","Speakers tested","Reset & ready"]
+    },
+    {
+      id:"tabA9", name:"Samsung Galaxy Tab A9", category:"Tablets", brand:"Samsung",
+      grade:"A", warranty:6, deal:true,
+      img:"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1200&q=80",
+      availability:{ status:"in_stock", stock:7, leadDays:0 },
+      variants:[
+        { sku:"taba9-64", label:"64GB (Wi-Fi)", price:139.99, was:159.99 }
+      ],
+      specs:{ network:"Wi-Fi", os:"Android" },
+      note:"Grade A — great value Android tablet, tested and clean.",
+      highlights:["Wi-Fi","Fast and smooth","Tested ports","Great for streaming"]
+    },
+    {
+      id:"ipad6", name:"Apple iPad 6th Gen 32GB", category:"iPads", brand:"Apple",
+      grade:"C", warranty:3, deal:false,
+      img:"https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=1200&q=80",
+      availability:{ status:"in_stock", stock:9, leadDays:0 },
+      variants:[
+        { sku:"ipad6-32", label:"32GB (Wi-Fi)", price:129.99, was:null }
+      ],
+      specs:{ network:"Wi-Fi", os:"iPadOS" },
+      note:"Grade C — visible wear, fully functional. Best for budget buyers.",
+      highlights:["Wi-Fi","Tested & reset","Affordable","Great for kids/study"]
+    },
+    {
+      id:"vasoun7", name:"VASOUN 7″ Android Tablet (Budget)", category:"Tablets", brand:"Other",
+      grade:"A", warranty:3, deal:true,
+      img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=1200&q=80",
+      availability:{ status:"source", stock:0, leadDays:7 },
+      variants:[
+        { sku:"vasoun7", label:"7-inch (Wi-Fi)", price:49.99, was:null }
+      ],
+      specs:{ network:"Wi-Fi", os:"Android", screen:"7-inch" },
+      note:"Budget 7-inch Android tablet — ideal for light use and kids.",
+      highlights:["Wi-Fi","Lightweight","Great for kids","Budget friendly"]
+    },
+    {
+      id:"win11pro14", name:"Windows 11 Smart Pro 14″ Laptop", category:"Laptops", brand:"Other",
+      grade:"A", warranty:12, deal:false,
+      img:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80",
+      availability:{ status:"in_stock", stock:5, leadDays:0 },
+      variants:[
+        { sku:"win11-8-256", label:"8GB / 256GB SSD", price:239.99, was:null },
+        { sku:"win11-16-512", label:"16GB / 512GB SSD", price:319.99, was:null }
+      ],
+      specs:{ os:"Windows 11 Pro", storage:"SSD", screen:"14-inch" },
+      note:"Grade A — lightweight 14-inch laptop, good for school and office work.",
+      highlights:["Windows 11 Pro","SSD storage","Webcam + Wi-Fi","12-month warranty"]
+    },
+    {
+      id:"lenovoSlim3", name:"Lenovo IdeaPad Slim 3 Chromebook", category:"Laptops", brand:"Lenovo",
+      grade:"B", warranty:6, deal:true,
+      img:"https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80",
+      availability:{ status:"in_stock", stock:8, leadDays:0 },
+      variants:[
+        { sku:"slim3-4-64", label:"4GB / 64GB", price:149.99, was:null }
+      ],
+      specs:{ os:"ChromeOS" },
+      note:"Grade B — great Chromebook for students, light wear, fully tested.",
+      highlights:["ChromeOS","Fast boot","Battery tested","Perfect for Google Docs"]
+    },
+    {
+      id:"hp11g8", name:"HP Chromebook 11 G8 EE", category:"Laptops", brand:"HP",
+      grade:"C", warranty:3, deal:false,
+      img:"https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=1200&q=80",
+      availability:{ status:"in_stock", stock:10, leadDays:0 },
+      variants:[
+        { sku:"hp11g8-4-32", label:"4GB / 32GB", price:99.99, was:null }
+      ],
+      specs:{ os:"ChromeOS", screen:"11-inch" },
+      note:"Grade C — visible wear. Fully working, ideal as a budget school laptop.",
+      highlights:["ChromeOS","Tested ports","Affordable","Great for students"]
+    }
+  ];
+
+  // State
+  const state = { q:"", category:"All", grade:"All", sort:"popular", cart: loadCart() };
+  const $ = (id) => document.getElementById(id);
+
+  function scrollToSection(id){
+    const el = document.getElementById(id);
+    if(el) el.scrollIntoView({behavior:"smooth"});
+  }
+  window.scrollToSection = scrollToSection;
+
+  function gradeClass(g){ return (g==='A')?'a':(g==='B')?'b':'c'; }
+  function gradeLabel(g){ return (g==='A')?'Grade A':(g==='B')?'Grade B':'Grade C'; }
+
+  function getVariant(p, sku){
+    return p.variants.find(v => v.sku === sku) || p.variants[0];
+  }
+  function getMinPrice(p){
+    return Math.min(...p.variants.map(v=>v.price));
+  }
+  function isSourced(p){
+    return (p.availability?.status || "in_stock") === "source";
+  }
+  function availabilityText(p){
+    return isSourced(p) ? SOURCE_LABEL : "In stock";
+  }
+  function dispatchDateText(p){
+    const days = p.availability?.leadDays || 0;
+    if(!days) return "Dispatch: 0–1 working day";
+    const d = new Date();
+    d.setDate(d.getDate() + days);
+    return `${SOURCE_LABEL} • Estimated dispatch by ${d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}`;
+  }
+
+  // Cart key is "pid__sku"
+  function parseCartKey(key){
+    const [pid, sku] = key.split("__");
+    const p = products.find(x=>x.id===pid);
+    return { p, sku, pid };
+  }
+
+  function loadCart(){
+    try { return JSON.parse(localStorage.getItem(CART_KEY) || "{}"); } catch { return {}; }
+  }
+  function saveCart(){
+    localStorage.setItem(CART_KEY, JSON.stringify(state.cart));
+  }
+  function cartCount(){
+    return Object.values(state.cart).reduce((s,n)=>s+n,0);
+  }
+  function subtotal(){
+    return Object.entries(state.cart).reduce((s,[key,qty])=>{
+      const { p, sku } = parseCartKey(key);
+      const v = p ? getVariant(p, sku) : null;
+      return s + (v ? v.price*qty : 0);
+    },0);
+  }
+
+  function setCategory(cat){
+    state.category = cat;
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    const chip = document.querySelector(`.chip[data-chip="${cat}"]`) || document.querySelector(`.chip[data-chip="All"]`);
+    if(chip) chip.classList.add('active');
+    $('categorySelect').value = cat;
+    renderProducts();
+    scrollToSection('shop');
+  }
+
+  function filteredProducts(){
+    let list = [...products];
+    if(state.category === 'Deals') list = list.filter(p => p.deal);
+    else if(state.category !== 'All') list = list.filter(p => p.category === state.category);
+    if(state.grade !== 'All') list = list.filter(p => p.grade === state.grade);
+    if(state.q.trim()){
+      const q = state.q.toLowerCase();
+      list = list.filter(p => `${p.name} ${p.brand} ${p.category}`.toLowerCase().includes(q));
+    }
+    if(state.sort === 'low') list.sort((a,b)=>getMinPrice(a)-getMinPrice(b));
+    if(state.sort === 'high') list.sort((a,b)=>getMinPrice(b)-getMinPrice(a));
+    return list;
+  }
+
+  function addToCartCartKey(cartKey){
+    state.cart[cartKey] = (state.cart[cartKey] || 0) + 1;
+    saveCart();
+    renderCart();
+    openCart();
+  }
+
+  function decFromCart(cartKey){
+    state.cart[cartKey] = (state.cart[cartKey]||0) - 1;
+    if(state.cart[cartKey] <= 0) delete state.cart[cartKey];
+    saveCart();
+    renderCart();
+  }
+
+  function renderProducts(){
+    const grid = $('productGrid');
+    grid.innerHTML = '';
+    const list = filteredProducts();
+
+    if(list.length === 0){
+      grid.innerHTML = `<div class="panel" style="grid-column:1/-1"><b>No results</b><div class="muted" style="margin-top:6px">Try another search or category.</div></div>`;
+      return;
+    }
+
+    list.forEach(p=>{
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="thumb"><img src="${p.img}" alt="${p.name}"></div>
+        <div class="body">
+          <div class="title">${p.name}</div>
+          <div class="meta">${p.brand} • ${p.category} • Warranty ${p.warranty}m</div>
+          <div class="badges">
+            <span class="badge ${gradeClass(p.grade)}">${gradeLabel(p.grade)}</span>
+            ${p.deal ? `<span class="badge">Deal</span>` : ``}
+            <span class="badge">${availabilityText(p)}</span>
+            <span class="badge">${dispatchDateText(p)}</span>
+          </div>
+          <div class="priceRow">
+            <div>
+              <div class="price">From ${GBP(getMinPrice(p))}</div>
+              <div class="was">${p.variants[0].was ? GBP(p.variants[0].was) : '&nbsp;'}</div>
+            </div>
+            <div class="cardActions">
+              <button class="btn sm" data-view="${p.id}">View</button>
+              <button class="btn sm primary" data-addfirst="${p.id}">Add</button>
+            </div>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    grid.querySelectorAll('[data-view]').forEach(btn=>{
+      btn.addEventListener('click', (e)=>openProduct(e.currentTarget.getAttribute('data-view'), true));
+    });
+
+    // Add first variant quickly
+    grid.querySelectorAll('[data-addfirst]').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const id = e.currentTarget.getAttribute('data-addfirst');
+        const p = products.find(x=>x.id===id);
+        if(!p) return;
+        const v = p.variants[0];
+        addToCartCartKey(`${p.id}__${v.sku}`);
+      });
+    });
+  }
+
+  function renderCart(){
+    const count = cartCount();
+    const cc = $('cartCount');
+    if(count>0){ cc.style.display='inline-flex'; cc.textContent = count; }
+    else { cc.style.display='none'; cc.textContent=''; }
+
+    $('subtotal').textContent = GBP(subtotal());
+
+    const items = $('cartItems');
+    items.innerHTML = '';
+    const entries = Object.entries(state.cart);
+
+    if(entries.length === 0){
+      items.innerHTML = `<div class="muted" style="font-size:14px">Your cart is empty.</div>`;
+      if($('checkoutModal').classList.contains('show')) updateCheckoutSummary();
+      return;
+    }
+
+    entries.forEach(([cartKey,qty])=>{
+      const { p, sku } = parseCartKey(cartKey);
+      if(!p) return;
+      const v = getVariant(p, sku);
+
+      const row = document.createElement('div');
+      row.className = 'item';
+      row.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <div style="flex:1">
+          <div style="font-weight:900">${p.name}</div>
+          <div class="muted" style="font-size:12px;margin-top:4px">${v.label} • ${gradeLabel(p.grade)} • ${availabilityText(p)}</div>
+          <div class="muted" style="font-size:12px;margin-top:4px">${dispatchDateText(p)}</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px">
+            <div style="font-weight:950">${GBP(v.price)}</div>
+            <div class="qty">
+              <button class="btn" data-dec="${cartKey}">−</button>
+              <div style="width:22px;text-align:center">${qty}</div>
+              <button class="btn" data-inc="${cartKey}">+</button>
+            </div>
+          </div>
+        </div>
+      `;
+      items.appendChild(row);
+    });
+
+    items.querySelectorAll('[data-dec]').forEach(b=>{
+      b.addEventListener('click',(e)=>decFromCart(e.currentTarget.getAttribute('data-dec')));
+    });
+    items.querySelectorAll('[data-inc]').forEach(b=>{
+      b.addEventListener('click',(e)=>addToCartCartKey(e.currentTarget.getAttribute('data-inc')));
+    });
+
+    if($('checkoutModal').classList.contains('show')) updateCheckoutSummary();
+  }
+
+  // Drawer
+  function openCart(){ $('drawer').classList.add('open'); $('overlay').classList.add('show'); }
+  function closeCart(){ $('drawer').classList.remove('open'); $('overlay').classList.remove('show'); }
+  window.closeCart = closeCart;
+
+  $('cartBtn').addEventListener('click', openCart);
+  $('overlay').addEventListener('click', closeCart);
+
+  // Product modal + URL
+  function openProduct(id, pushUrl){
+    const p = products.find(x=>x.id===id);
+    if(!p) return;
+
+    $('mTitle').textContent = p.name;
+    $('mMeta').textContent = `${p.brand} • ${p.category} • ${gradeLabel(p.grade)} • Warranty ${p.warranty} months`;
+    $('mImg').src = p.img;
+
+    $('mBadges').innerHTML = `
+      <span class="badge ${gradeClass(p.grade)}">${gradeLabel(p.grade)}</span>
+      ${p.deal ? `<span class="badge">Deal</span>` : ``}
+      <span class="badge">${availabilityText(p)}</span>
+    `;
+
+    $('mNote').textContent = p.note;
+
+    const s = p.specs || {};
+    const specsText = Object.entries(s).map(([k,v])=>`${k.toUpperCase()}: ${v}`).join(" • ");
+    $('mSpecs').textContent = specsText || "Specs coming soon.";
+
+    $('mList').innerHTML = (p.highlights || []).map(h=>`<li>${h}</li>`).join('');
+    $('mStock').textContent = dispatchDateText(p);
+
+    const vSel = $('mVariant');
+    vSel.innerHTML = p.variants.map(v => `<option value="${v.sku}">${v.label} — ${GBP(v.price)}</option>`).join("");
+
+    function applyVariant(sku){
+      const v = getVariant(p, sku);
+      $('mPrice').textContent = GBP(v.price);
+      $('mWas').textContent = v.was ? `Was ${GBP(v.was)}` : "";
+      $('mDispatch').textContent = dispatchDateText(p);
+
+      const msg =
+`Hi DFLOWS GADGETS, I want to buy:
+${p.name} (${v.label})
+Price: ${GBP(v.price)}
+Condition: ${gradeLabel(p.grade)}
+${dispatchDateText(p)}
+
+Please confirm availability and how to pay.`;
+      $('mWhatsApp').href = waLink(msg);
+
+      $('mAdd').onclick = ()=>addToCartCartKey(`${p.id}__${v.sku}`);
+    }
+
+    applyVariant(p.variants[0].sku);
+    vSel.onchange = () => applyVariant(vSel.value);
+
+    $('productModal').classList.add('show');
+
+    if(pushUrl){
+      const u = new URL(window.location.href);
+      u.searchParams.set("product", id);
+      history.pushState({}, "", u.toString());
+    }
+  }
+
+  function closeProduct(){
+    $('productModal').classList.remove('show');
+    const u = new URL(window.location.href);
+    u.searchParams.delete("product");
+    history.pushState({}, "", u.toString());
+  }
+  window.closeProduct = closeProduct;
+
+  // Checkout
+  function openCheckout(){
+    $('checkoutModal').classList.add('show');
+    $('orderSuccess').classList.add('hidden');
+    updateCheckoutSummary();
+  }
+  function closeCheckout(){ $('checkoutModal').classList.remove('show'); }
+  window.openCheckout = openCheckout;
+  window.closeCheckout = closeCheckout;
+
+  function updateCheckoutSummary(){
+    const entries = Object.entries(state.cart);
+
+    if(entries.length === 0){
+      $('coSummary').textContent = "Your cart is empty.";
+      $('coSubtotal').textContent = GBP(0);
+      $('coShipCost').textContent = GBP(0);
+      $('coTotal').textContent = GBP(0);
+      $('sourceNoticeBox').classList.add('hidden');
+      return;
+    }
+
+    const lines = entries.map(([cartKey,qty])=>{
+      const { p, sku } = parseCartKey(cartKey);
+      if(!p) return "";
+      const v = getVariant(p, sku);
+      return `${qty}× ${p.name} (${v.label}) <span class="muted">• ${availabilityText(p)}</span>`;
+    }).filter(Boolean).join("<br>");
+    $('coSummary').innerHTML = lines;
+
+    const sub = subtotal();
+    const ship = $('coShipping').value === "express" ? 6.99 : 3.99;
+
+    $('coSubtotal').textContent = GBP(sub);
+    $('coShipCost').textContent = GBP(ship);
+    $('coTotal').textContent = GBP(sub + ship);
+
+    // show notice only if sourced items exist
+    const hasSourced = Object.keys(state.cart).some(k=>{
+      const { p } = parseCartKey(k);
+      return p && isSourced(p);
+    });
+    $('sourceNoticeBox').classList.toggle('hidden', !hasSourced);
+    if(!hasSourced) $('sourceAccept').checked = false;
+  }
+
+  $('coShipping').addEventListener('change', updateCheckoutSummary);
+
+  // Orders
+  function loadOrders(){ try { return JSON.parse(localStorage.getItem(ORDERS_KEY) || "{}"); } catch { return {}; } }
+  function saveOrders(o){ localStorage.setItem(ORDERS_KEY, JSON.stringify(o)); }
+  function randomId(){ return `DF-${Math.floor(100000 + Math.random()*900000)}`; }
+
+  function placeOrder(){
+    if(cartCount() === 0){ alert("Your cart is empty."); return; }
+
+    const hasSourced = Object.keys(state.cart).some(k=>{
+      const { p } = parseCartKey(k);
+      return p && isSourced(p);
+    });
+    if(hasSourced && !$('sourceAccept').checked){
+      alert(`Please accept the “${SOURCE_LABEL}” notice to continue.`);
+      return;
+    }
+
+    const name = $('coName').value.trim();
+    const email = $('coEmail').value.trim();
+    const address = $('coAddress').value.trim();
+    if(!name || !email || !address){
+      alert("Please fill name, email and address.");
+      return;
+    }
+
+    const id = randomId();
+    const orders = loadOrders();
+    orders[id] = {
+      id,
+      createdAt: new Date().toISOString(),
+      name, email, address,
+      shipping: $('coShipping').value,
+      cart: state.cart,
+      subtotal: subtotal(),
+      statusIndex: 0,
+      statusFlow: ["Order received", "Processing", "Dispatched", "Delivered"]
+    };
+    saveOrders(orders);
+
+    // clear cart
+    state.cart = {};
+    saveCart();
+    renderCart();
+    updateCheckoutSummary();
+
+    $('orderSuccess').classList.remove('hidden');
+    $('orderIdText').textContent = id;
+
+    // auto fill track box
+    $('trackId').value = id;
+  }
+  window.placeOrder = placeOrder;
+
+  // Track order demo
+  function trackOrder(){
+    const id = $('trackId').value.trim();
+    const orders = loadOrders();
+    const o = orders[id];
+
+    if(!o){
+      $('trackResult').innerHTML = `<b>Status</b><div class="muted" style="margin-top:6px">No order found for "${id}".</div>`;
+      return;
+    }
+
+    if(o.statusIndex < o.statusFlow.length - 1){
+      o.statusIndex += 1;
+      orders[id] = o;
+      saveOrders(orders);
+    }
+
+    const status = o.statusFlow[o.statusIndex];
+    $('trackResult').innerHTML = `
+      <b>Status</b>
+      <div class="muted" style="margin-top:6px">Order: <strong style="color:var(--text)">${o.id}</strong></div>
+      <div class="muted" style="margin-top:6px">Current status: <strong style="color:var(--text)">${status}</strong></div>
+      <div class="muted" style="margin-top:10px;font-size:12px">Demo: status advances each time you check.</div>
+    `;
+  }
+  window.trackOrder = trackOrder;
+
+  // Sell quote calculator
+  function calcSellQuote(){
+    const id = $('sellDevice').value;
+    if(!id){
+      $('sellResult').innerHTML = `<b>Estimate:</b><div class="muted" style="margin-top:6px">Please choose a device.</div>`;
+      return;
+    }
+    const p = products.find(x=>x.id===id);
+    const grade = $('sellGrade').value;
+    const includes = $('sellIncludes').value;
+
+    // base on cheapest variant
+    const base = getMinPrice(p);
+    const gradeMult = grade === "A" ? 0.60 : grade === "B" ? 0.50 : 0.40;
+    const includeAdj = includes === "full" ? 1.00 : 0.93;
+    const estimate = Math.max(10, base * gradeMult * includeAdj);
+
+    $('sellResult').innerHTML = `
+      <b>Estimate:</b>
+      <div class="muted" style="margin-top:6px">
+        Device: <strong style="color:var(--text)">${p.name}</strong><br>
+        Condition: <strong style="color:var(--text)">${gradeLabel(grade)}</strong><br>
+        Includes: <strong style="color:var(--text)">${includes === "full" ? "Charger + accessories" : "Missing items"}</strong>
+      </div>
+      <div style="margin-top:10px;font-size:22px;font-weight:950">${GBP(estimate)}</div>
+      <div class="muted" style="margin-top:6px;font-size:12px">
+        Estimate based on base variant. Final quote depends on storage/battery/screen condition and verification.
+      </div>
+    `;
+  }
+  window.calcSellQuote = calcSellQuote;
+
+  // Populate sell dropdown
+  function initSellList(){
+    const sel = $('sellDevice');
+    products.forEach(p=>{
+      const opt = document.createElement('option');
+      opt.value = p.id;
+      opt.textContent = `${p.name} (${p.category})`;
+      sel.appendChild(opt);
+    });
+  }
+
+  // Filters/search
+  $('searchGlobal').addEventListener('input', e=>{
+    state.q = e.target.value.trim();
+    renderProducts();
+    scrollToSection('shop');
+  });
+
+  $('categorySelect').addEventListener('change', e=>{
+    state.category = e.target.value;
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    const chip = document.querySelector(`.chip[data-chip="${state.category}"]`) || document.querySelector(`.chip[data-chip="All"]`);
+    if(chip) chip.classList.add('active');
+    renderProducts();
+  });
+
+  $('gradeSelect').addEventListener('change', e=>{ state.grade = e.target.value; renderProducts(); });
+  $('sortSelect').addEventListener('change', e=>{ state.sort = e.target.value; renderProducts(); });
+
+  document.querySelectorAll('.chip').forEach(ch=>{
+    ch.addEventListener('click', ()=>setCategory(ch.getAttribute('data-chip')));
+  });
+
+  // URL product param support
+  function loadProductFromUrl(){
+    const u = new URL(window.location.href);
+    const pid = u.searchParams.get("product");
+    if(pid) openProduct(pid, false);
+  }
+
+  // Init
+  $('year').textContent = new Date().getFullYear();
+  initSellList();
+  renderProducts();
+  renderCart();
+  loadProductFromUrl();
+</script>
+</body>
+</html>
