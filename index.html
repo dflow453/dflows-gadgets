@@ -1,20 +1,84 @@
 <!doctype html>
-<html lang="en-GB">
+<html lang="en-GB" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DFLOWS GADGETS | Buy & Resell Tech</title>
-  <meta name="description" content="DFLOWS GADGETS - Buy quality phones, laptops, iPads and tablets. Transparent grading, warranty, fast UK dispatch." />
+  <title>DFLOW GADGETS | Buy & Resell Tech</title>
+  <meta name="description" content="DFLOW GADGETS - Buy quality phones, laptops, iPads and tablets. Transparent grading, warranty, fast UK dispatch." />
 
   <style>
+    /* =========================================================
+       THEME SYSTEM (FIXED)
+       Toggle uses: html[data-theme="dark"] / html[data-theme="light"]
+    ========================================================== */
+
     :root{
+      --brandGrad: linear-gradient(90deg,#3b82f6,#f472b6,#ef4444,#0b0e14,#f59e0b);
+
+      /* Neutral defaults (overridden by theme blocks below) */
       --bg:#0b0e14; --card:#121826; --soft:#0f1420;
       --text:#eef2ff; --muted:#a6afc3; --line:#222b3e;
-      --accent:#4f8cff; --accent2:#22c55e; --danger:#ef4444;
+
+      --accent:#4f8cff;        /* blue */
+      --accent2:#22c55e;       /* green */
+      --accentPink:#f472b6;    /* supporting pink */
+      --accentRed:#ef4444;     /* red */
+      --accentYellow:#f59e0b;  /* yellow/orange */
+
+      --favAccent:#ef4444; /* changed: favourites are red/brand not pink */
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+
+      --radius-xl:24px;
+      --radius-lg:18px;
+      --radius-md:16px;
+
+      --chipBg: rgba(18,24,38,.55);
+      --glass: rgba(18,24,38,.55);
+      --glass2: rgba(18,24,38,.75);
+      --heroBg: rgba(79,140,255,.18);
+    }
+
+    html[data-theme="dark"]{
+      --bg:#0b0e14; --card:#121826; --soft:#0f1420;
+      --text:#eef2ff; --muted:#a6afc3; --line:#222b3e;
+
+      --accent:#4f8cff;
+      --accent2:#22c55e;
+      --accentPink:#f472b6;
+      --accentRed:#ef4444;
+      --accentYellow:#f59e0b;
+
+      --chipBg: rgba(18,24,38,.55);
+      --glass: rgba(18,24,38,.55);
+      --glass2: rgba(18,24,38,.75);
+      --heroBg: rgba(79,140,255,.18);
       --shadow: 0 12px 30px rgba(0,0,0,.35);
     }
+
+    html[data-theme="light"]{
+      --bg:#f6f8ff; --card:#ffffff; --soft:#f1f5ff;
+      --text:#0b1220; --muted:#51607a; --line:#d9e1f2;
+
+      --accent:#2563eb;        /* deeper blue */
+      --accent2:#16a34a;       /* deeper green */
+      --accentPink:#ec4899;    /* slightly deeper pink for light mode */
+      --accentRed:#dc2626;
+      --accentYellow:#f59e0b;
+
+      --chipBg: rgba(255,255,255,.75);
+      --glass: rgba(255,255,255,.75);
+      --glass2: rgba(255,255,255,.90);
+      --heroBg: rgba(37,99,235,.10);
+      --shadow: 0 10px 22px rgba(15,23,42,.12);
+    }
+
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--text);
+    }
     a{color:inherit;text-decoration:none}
     .wrap{max-width:1180px;margin:0 auto;padding:0 16px}
     .muted{color:var(--muted)}
@@ -22,11 +86,19 @@
 
     /* Top strip */
     .topbar{
-      background:linear-gradient(90deg, rgba(79,140,255,.20), rgba(34,197,94,.15));
+      background:
+        linear-gradient(90deg,
+          color-mix(in srgb, var(--accent) 25%, transparent),
+          color-mix(in srgb, var(--accentPink) 18%, transparent),
+          color-mix(in srgb, var(--accentYellow) 14%, transparent)
+        );
       border-bottom:1px solid var(--line);
       font-size:13px;color:var(--muted);
     }
-    .topbar .row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;flex-wrap:wrap}
+    .topbar .row{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:10px 0;flex-wrap:wrap
+    }
     .toplinks{display:flex;gap:14px;flex-wrap:wrap}
     .toplinks a{opacity:.95}
     .toplinks a:hover{opacity:1;text-decoration:underline}
@@ -34,27 +106,51 @@
     /* Header */
     header{
       position:sticky;top:0;z-index:50;
-      background:rgba(11,14,20,.82);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
       backdrop-filter: blur(10px);
       border-bottom:1px solid var(--line);
     }
     .head{
       display:grid;
-      grid-template-columns: 240px 1fr 320px;
+      grid-template-columns: 240px 1fr 360px;
       gap:12px;
       align-items:center;
       padding:14px 0;
     }
+
     .brand{display:flex;align-items:center;gap:10px}
+
+    /* ✅ LOGO UPDATED: supports logo.png */
     .logo{
-      width:42px;height:42px;border-radius:16px;
+      width:42px;
+      height:42px;
+      border-radius:16px;
       border:1px solid var(--line);
-      display:grid;place-items:center;
-      background: radial-gradient(circle at 30% 30%, rgba(79,140,255,.28), transparent 55%),
-                  radial-gradient(circle at 70% 70%, rgba(34,197,94,.20), transparent 55%);
+      display:grid;
+      place-items:center;
+      background: var(--soft);
       box-shadow: var(--shadow);
-      font-weight:900;
+      position:relative;
+      overflow:hidden;
     }
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+      padding:4px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.35));
+    }
+    .logo::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: var(--brandGrad);
+      opacity:.18;
+      filter: blur(10px);
+      pointer-events:none;
+    }
+
     .brand b{display:block;font-size:18px;letter-spacing:.2px}
     .brand small{color:var(--muted);display:block;margin-top:2px;font-size:12px}
 
@@ -63,7 +159,7 @@
       border:1px solid var(--line);
       border-radius:18px;
       padding:10px 12px;
-      background:rgba(18,24,38,.65);
+      background: var(--glass);
     }
     .search input{
       width:100%;
@@ -77,7 +173,11 @@
       font-size:12px;
       color:var(--muted);
     }
-    .nav a{border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:rgba(18,24,38,.45)}
+    .nav a{
+      border:1px solid var(--line);
+      border-radius:999px;padding:6px 10px;
+      background: var(--glass);
+    }
     .nav a:hover{text-decoration:underline}
 
     .actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
@@ -91,8 +191,9 @@
       font-weight:700;
     }
     .btn:hover{filter:brightness(1.06)}
-    .btn.primary{background:var(--accent);border-color:transparent;color:#08101f}
-    .btn.green{background:var(--accent2);border-color:transparent;color:#07140c}
+    .btn.primary{background:var(--accent);border-color:transparent;color:color-mix(in srgb, var(--bg) 15%, #000)}
+    .btn.green{background:var(--accent2);border-color:transparent;color:color-mix(in srgb, var(--bg) 15%, #000)}
+    .btn.pink{background:color-mix(in srgb, var(--accentPink) 60%, transparent); border-color:transparent;}
     .btn.sm{padding:9px 10px;border-radius:14px;font-size:13px}
     .pill{
       display:inline-flex;align-items:center;justify-content:center;
@@ -106,14 +207,28 @@
     .chip{
       border:1px solid var(--line);
       color:var(--muted);
-      background:rgba(18,24,38,.55);
+      background: var(--chipBg);
       border-radius:999px;
       padding:8px 10px;
       font-size:12px;
       cursor:pointer;
       user-select:none;
     }
-    .chip.active{border-color:rgba(79,140,255,.55);color:var(--text)}
+    .chip.active{
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+      color:var(--text);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--accentPink) 14%, transparent);
+    }
+
+    /* Section headings gradient underline */
+    .section h2{margin:0;font-size:22px}
+    .section h2::after{
+      content:"";
+      display:block;
+      width:46px;height:3px;margin-top:6px;border-radius:999px;
+      background: var(--brandGrad);
+      opacity:.9;
+    }
 
     /* Hero */
     .hero{padding:18px 0 8px}
@@ -122,7 +237,14 @@
       border:1px solid var(--line);
       border-radius:24px;
       overflow:hidden;
-      background:linear-gradient(135deg, rgba(79,140,255,.18), rgba(18,24,38,.75));
+      background:
+        linear-gradient(
+          135deg,
+          color-mix(in srgb, var(--accent) 22%, transparent),
+          color-mix(in srgb, var(--accentPink) 14%, transparent),
+          color-mix(in srgb, var(--accentYellow) 10%, transparent),
+          var(--glass2)
+        );
       box-shadow: var(--shadow);
     }
     .bannerInner{padding:18px}
@@ -134,7 +256,7 @@
     .mini{
       border:1px solid var(--line);
       border-radius:24px;
-      background:rgba(18,24,38,.65);
+      background: var(--glass);
       padding:16px;
     }
     .mini b{display:block}
@@ -144,17 +266,16 @@
       font-size:12px;color:var(--muted);
       border:1px solid var(--line);
       border-radius:999px;padding:6px 10px;
-      background:rgba(11,14,20,.35);
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
     }
 
-    /* Sections */
+    /* Sections + panels */
     .section{padding:16px 0 22px}
-    .section h2{margin:0;font-size:22px}
     .section p{margin:6px 0 0;color:var(--muted);font-size:13px}
     .panel{
       border:1px solid var(--line);
       border-radius:22px;
-      background:rgba(18,24,38,.55);
+      background: var(--glass);
       padding:14px;
     }
     .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
@@ -165,7 +286,7 @@
     .cat{
       border:1px solid var(--line);
       border-radius:18px;
-      background:rgba(18,24,38,.55);
+      background: var(--glass);
       padding:12px;
       cursor:pointer;
       min-height:84px;
@@ -181,7 +302,7 @@
     .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     select, input.text{
       border:1px solid var(--line);
-      background:rgba(18,24,38,.55);
+      background: var(--glass);
       color:var(--text);
       border-radius:16px;
       padding:10px 12px;
@@ -193,31 +314,64 @@
       border:1px solid var(--line);
       border-radius:22px;
       overflow:hidden;
-      background:rgba(18,24,38,.65);
-      box-shadow: 0 10px 24px rgba(0,0,0,.20);
+      background: var(--glass2);
+      box-shadow: 0 10px 24px rgba(0,0,0,.12);
       display:flex;flex-direction:column;
+      transition: box-shadow .15s ease, transform .15s ease;
     }
-    .thumb{height:150px;background:#0d1220}
+    .card:hover{
+      transform: translateY(-1px);
+      box-shadow:
+        0 12px 30px rgba(0,0,0,.18),
+        0 0 0 1px color-mix(in srgb, var(--accentPink) 14%, transparent);
+    }
+    .thumb{height:150px;background: color-mix(in srgb, var(--bg) 85%, transparent)}
     .thumb img{width:100%;height:100%;object-fit:cover;display:block}
     .body{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
     .title{font-weight:900;line-height:1.15}
     .meta{color:var(--muted);font-size:12px}
     .badges{display:flex;gap:8px;flex-wrap:wrap}
-    .badge{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 10px}
-    .badge.a{border-color:rgba(34,197,94,.45);color:#dffbe8}
-    .badge.b{border-color:rgba(79,140,255,.45);color:#e6efff}
-    .badge.c{border-color:rgba(239,68,68,.40);color:#ffe7e7}
+    .badge{
+      font-size:12px;color:var(--muted);
+      border:1px solid var(--line);border-radius:999px;padding:6px 10px;
+      background: color-mix(in srgb, var(--bg) 86%, transparent);
+    }
+    .badge.a{border-color:rgba(34,197,94,.45);color:color-mix(in srgb, var(--text) 85%, #dffbe8)}
+    .badge.b{border-color:rgba(79,140,255,.45);color:color-mix(in srgb, var(--text) 85%, #e6efff)}
+    .badge.c{border-color:rgba(239,68,68,.40);color:color-mix(in srgb, var(--text) 85%, #ffe7e7)}
+    .badge.deal{border-color: color-mix(in srgb, var(--accentPink) 55%, var(--line))}
     .priceRow{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:auto}
     .price{font-size:18px;font-weight:950}
     .was{font-size:12px;color:var(--muted);text-decoration:line-through}
     .cardActions{display:flex;gap:8px}
+
+    /* Favourite button (changed colour) */
+    .favBtn{
+      border:1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      width:40px;height:36px;
+      border-radius:14px;
+      cursor:pointer;
+      display:grid;place-items:center;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .favBtn:hover{
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--favAccent) 18%, transparent);
+      transform: translateY(-1px);
+    }
+    .favBtn.active{
+      color: var(--favAccent);
+      border-color: color-mix(in srgb, var(--favAccent) 55%, var(--line));
+    }
 
     /* Cart Drawer */
     .overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:.2s;z-index:60}
     .overlay.show{opacity:1;pointer-events:auto}
     .drawer{
       position:fixed;top:0;right:0;height:100vh;width:min(420px,100%);
-      background:#0f1420;border-left:1px solid var(--line);
+      background: color-mix(in srgb, var(--soft) 90%, var(--bg));
+      border-left:1px solid var(--line);
       transform:translateX(105%);transition:.25s;z-index:70;
       display:flex;flex-direction:column;
     }
@@ -236,7 +390,7 @@
     .modal{
       width:min(980px,96vw);
       border-radius:24px;
-      background:#0f1420;
+      background: color-mix(in srgb, var(--soft) 92%, var(--bg));
       border:1px solid var(--line);
       overflow:hidden;
       box-shadow: var(--shadow);
@@ -257,6 +411,40 @@
     .footLinks{display:flex;gap:14px;flex-wrap:wrap}
     .footLinks a:hover{text-decoration:underline}
 
+    /* Recently viewed */
+    .rvGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+    .rvCard{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background: var(--glass);
+      padding:12px;
+      display:flex;gap:10px;align-items:center;
+      cursor:pointer;
+    }
+    .rvCard img{width:56px;height:56px;border-radius:14px;object-fit:cover;border:1px solid var(--line)}
+    .rvCard:hover{filter:brightness(1.04)}
+
+    /* Load controls */
+    .loadRow{display:flex;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+
+    /* Back to top floating button */
+    .toTop{
+      position:fixed; right:16px; bottom:16px;
+      z-index:90;
+      border:1px solid var(--line);
+      background: var(--glass2);
+      color: var(--text);
+      padding:10px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      box-shadow: var(--shadow);
+      display:none;
+    }
+    .toTop.show{display:inline-flex}
+    .toTop:hover{
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--accentYellow) 18%, transparent), var(--shadow);
+    }
+
     /* Responsive */
     @media (max-width:980px){
       .head{grid-template-columns: 1fr; gap:10px}
@@ -264,6 +452,7 @@
       .heroGrid{grid-template-columns:1fr}
       .cats{grid-template-columns:repeat(3,minmax(0,1fr))}
       .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .rvGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .four{grid-template-columns:repeat(2,minmax(0,1fr))}
       .two{grid-template-columns:1fr}
       .mGrid{grid-template-columns:1fr}
@@ -272,6 +461,7 @@
     @media (max-width:520px){
       .cats{grid-template-columns:repeat(2,minmax(0,1fr))}
       .grid{grid-template-columns:1fr}
+      .rvGrid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -300,9 +490,11 @@
   <header>
     <div class="wrap head">
       <a class="brand" href="#top" onclick="scrollToSection('top')">
-        <div class="logo">DF</div>
+        <div class="logo">
+          <img src="logo.png" alt="DFLOW GADGETS logo">
+        </div>
         <div>
-          <b>DFLOWS GADGETS</b>
+          <b>DFLOW GADGETS</b>
           <small>Phones • Laptops • iPads • Tablets</small>
         </div>
       </a>
@@ -315,13 +507,14 @@
 
         <div class="nav">
           <a href="#shop">Shop</a>
-          <a href="#sell">Sell to DFLOWS</a>
+          <a href="#sell">Sell to DFLOW</a>
           <a href="#grading">Grading</a>
           <a href="#track">Track</a>
         </div>
 
         <div class="chipbar" id="chipbar">
           <div class="chip active" data-chip="All">All</div>
+          <div class="chip" data-chip="Favourites">Favourites</div>
           <div class="chip" data-chip="Phones">Phones</div>
           <div class="chip" data-chip="Laptops">Laptops</div>
           <div class="chip" data-chip="iPads">iPads</div>
@@ -331,7 +524,9 @@
       </div>
 
       <div class="actions">
-        <button class="btn green" onclick="scrollToSection('sell')">Sell to DFLOWS</button>
+        <button class="btn" id="themeBtn" title="Toggle theme">🌙 Dark</button>
+        <button class="btn green" onclick="scrollToSection('sell')">Sell to DFLOW</button>
+        <button class="btn pink" onclick="setCategory('Favourites')">❤ Favourites</button>
         <button class="btn" id="cartBtn">🛒 Cart <span id="cartCount" class="pill" style="display:none;margin-left:6px"></span></button>
         <button class="btn primary" onclick="scrollToSection('shop')">Shop</button>
       </div>
@@ -347,7 +542,7 @@
           <div class="bannerInner">
             <h1>Quality gadgets.<br><span style="color:var(--muted)">Better prices.</span></h1>
             <p>
-              DFLOWS GADGETS sells quality pre-owned and refurbished tech — fully tested, honestly graded (A/B/C),
+              DFLOW GADGETS sells quality pre-owned and refurbished tech — fully tested, honestly graded (A/B/C),
               and backed by warranty. Some items can be <b>Order & We Source It</b> (estimated dispatch shown).
             </p>
             <div class="bannerActions">
@@ -369,23 +564,17 @@
           <div class="mini">
             <b>Today’s Deals</b>
             <small>Best value items — limited stock.</small>
-            <div class="tag">
-              <span>Deals</span><span>Grade A/B</span><span>Unlocked</span>
-            </div>
+            <div class="tag"><span>Deals</span><span>Grade A/B</span><span>Unlocked</span></div>
           </div>
           <div class="mini">
             <b>Student Laptops</b>
             <small>Chromebooks + budget Windows laptops for uni/work.</small>
-            <div class="tag">
-              <span>Warranty</span><span>Ready to go</span><span>Fast dispatch</span>
-            </div>
+            <div class="tag"><span>Warranty</span><span>Ready to go</span><span>Fast dispatch</span></div>
           </div>
           <div class="mini">
             <b>Order & We Source It</b>
             <small>If an item is not in stock, we can source it quickly and show an estimated dispatch date.</small>
-            <div class="tag">
-              <span>Transparent</span><span>Estimated dispatch</span>
-            </div>
+            <div class="tag"><span>Transparent</span><span>Estimated dispatch</span></div>
           </div>
         </div>
       </div>
@@ -394,16 +583,23 @@
     <!-- Categories -->
     <section class="section">
       <h2>Shop by category</h2>
-      <p>Fast browsing like CeX — but DFLOWS style.</p>
+      <p>Fast browsing like CeX — but DFLOW style.</p>
 
       <div class="cats">
-        <div class="cat" onclick="setCategory('Phones')"><b>Phones</b><small>Samsung • Motorola</small></div>
+        <div class="cat" onclick="setCategory('Phones')"><b>Phones</b><small>Samsung • Motorola • Apple</small></div>
         <div class="cat" onclick="setCategory('Laptops')"><b>Laptops</b><small>Windows • Chromebooks</small></div>
-        <div class="cat" onclick="setCategory('iPads')"><b>iPads</b><small>6th Gen • 8th Gen</small></div>
+        <div class="cat" onclick="setCategory('iPads')"><b>iPads</b><small>6th • 8th • 9th • 10th</small></div>
         <div class="cat" onclick="setCategory('Tablets')"><b>Tablets</b><small>Samsung • Android</small></div>
-        <div class="cat" onclick="setCategory('Deals')"><b>Deals</b><small>Best value right now</small></div>
+        <div class="cat" onclick="setCategory('Favourites')"><b>Favourites</b><small>Your saved items</small></div>
         <div class="cat" onclick="setCategory('All')"><b>All products</b><small>Browse everything</small></div>
       </div>
+    </section>
+
+    <!-- Recently viewed -->
+    <section class="section" id="recently">
+      <h2>Recently viewed</h2>
+      <p>Quickly jump back to products you checked.</p>
+      <div class="rvGrid" id="recentGrid"></div>
     </section>
 
     <!-- SHOP -->
@@ -411,12 +607,13 @@
       <div class="bar">
         <div>
           <h2>Shop</h2>
-          <p>Filter by category and grade. Click View to choose storage/RAM and see dispatch time.</p>
+          <p>Filter by category and grade. Tap ❤ to save. Click View to choose storage/RAM and see dispatch time.</p>
         </div>
 
         <div class="filters">
           <select id="categorySelect">
             <option value="All">All categories</option>
+            <option value="Favourites">Favourites</option>
             <option value="Phones">Phones</option>
             <option value="Laptops">Laptops</option>
             <option value="iPads">iPads</option>
@@ -440,11 +637,16 @@
       </div>
 
       <div class="grid" id="productGrid"></div>
+
+      <div class="loadRow">
+        <button class="btn primary" id="loadMoreBtn">Load more</button>
+        <button class="btn" id="loadLessBtn" style="display:none">Load less</button>
+      </div>
     </section>
 
     <!-- SELL -->
     <section class="section" id="sell">
-      <h2>Sell to DFLOWS (Instant estimate)</h2>
+      <h2>Sell to DFLOW (Instant estimate)</h2>
       <p>Select a device and condition to get a quick estimate. Final quote depends on storage/battery/accessories.</p>
 
       <div class="two">
@@ -487,22 +689,13 @@
       <p>We grade cosmetics honestly. Function must be 100% for every device we sell.</p>
 
       <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px">
-        <div class="panel">
-          <b>Grade A — Excellent</b>
-          <p class="muted">Minimal signs of use. Screen and casing look very clean.</p>
-        </div>
-        <div class="panel">
-          <b>Grade B — Very good</b>
-          <p class="muted">Light marks/scratches. Fully working. Best value for most buyers.</p>
-        </div>
-        <div class="panel">
-          <b>Grade C — Good</b>
-          <p class="muted">Visible wear. Fully working. Best price option.</p>
-        </div>
+        <div class="panel"><b>Grade A — Excellent</b><p class="muted">Minimal signs of use. Screen and casing look very clean.</p></div>
+        <div class="panel"><b>Grade B — Very good</b><p class="muted">Light marks/scratches. Fully working. Best value for most buyers.</p></div>
+        <div class="panel"><b>Grade C — Good</b><p class="muted">Visible wear. Fully working. Best price option.</p></div>
       </div>
 
       <div class="panel" style="margin-top:14px">
-        <b>Order & We Source It (friendly pre-order)</b>
+        <b>Order & We Source It</b>
         <p class="muted">
           If an item shows <b>Order & We Source It</b>, it means it’s not currently on-hand but we can source it quickly.
           You’ll always see an estimated dispatch date before you buy.
@@ -515,22 +708,8 @@
       <h2>Warranty</h2>
       <p>Warranty covers faults under normal use. It does not cover accidental damage or liquid damage.</p>
       <div class="two">
-        <div class="panel">
-          <b>Covered</b>
-          <ul>
-            <li>Hardware faults under normal use</li>
-            <li>Charging faults (not caused by damage)</li>
-            <li>Speaker/mic faults (not caused by liquid damage)</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <b>Not covered</b>
-          <ul>
-            <li>Cracked screens, impact damage</li>
-            <li>Water/liquid damage</li>
-            <li>Unauthorised repairs</li>
-          </ul>
-        </div>
+        <div class="panel"><b>Covered</b><ul><li>Hardware faults under normal use</li><li>Charging faults (not caused by damage)</li><li>Speaker/mic faults (not liquid damage)</li></ul></div>
+        <div class="panel"><b>Not covered</b><ul><li>Cracked screens, impact damage</li><li>Water/liquid damage</li><li>Unauthorised repairs</li></ul></div>
       </div>
     </section>
 
@@ -539,14 +718,8 @@
       <h2>Returns & refunds</h2>
       <p>Clear returns policy builds confidence. Adjust timeframes to what you offer.</p>
       <div class="two">
-        <div class="panel">
-          <b>Change of mind</b>
-          <p class="muted">Example: returns within 14 days in same condition.</p>
-        </div>
-        <div class="panel">
-          <b>Faulty items</b>
-          <p class="muted">Contact support with your order ID and we’ll arrange return/repair/replacement.</p>
-        </div>
+        <div class="panel"><b>Change of mind</b><p class="muted">Example: returns within 14 days in same condition.</p></div>
+        <div class="panel"><b>Faulty items</b><p class="muted">Contact support with your order ID and we’ll arrange return/repair/replacement.</p></div>
       </div>
     </section>
 
@@ -589,27 +762,22 @@
       <h2>FAQ</h2>
       <div class="two">
         <div class="panel">
-          <b>Are devices unlocked?</b>
-          <p class="muted">Yes, unless stated otherwise.</p>
+          <b>Are devices unlocked?</b><p class="muted">Yes, unless stated otherwise.</p>
           <hr style="border:0;border-top:1px solid var(--line);margin:12px 0" />
-          <b>Do you check iCloud/Google lock?</b>
-          <p class="muted">Yes. Devices are verified and reset before dispatch.</p>
+          <b>Do you check iCloud/Google lock?</b><p class="muted">Yes. Devices are verified and reset before dispatch.</p>
         </div>
         <div class="panel">
-          <b>What’s included?</b>
-          <p class="muted">As stated on the listing (typically device + charger unless stated).</p>
+          <b>What’s included?</b><p class="muted">As stated on the listing (typically device + charger unless stated).</p>
           <hr style="border:0;border-top:1px solid var(--line);margin:12px 0" />
-          <b>What does “Order & We Source It” mean?</b>
-          <p class="muted">It means we’ll source it from our supplier after purchase. Estimated dispatch date is shown.</p>
+          <b>What does “Order & We Source It” mean?</b><p class="muted">We source it from supplier after purchase. Estimated dispatch is shown.</p>
         </div>
       </div>
     </section>
 
     <!-- ABOUT -->
     <section class="section" id="about">
-      <h2>About DFLOWS GADGETS</h2>
+      <h2>About DFLOW GADGETS</h2>
       <p>We make quality tech affordable by selling tested, graded, warrantied devices.</p>
-
       <div class="panel" style="margin-top:14px">
         <b>Our promise</b>
         <ul>
@@ -624,17 +792,17 @@
     <!-- CONTACT -->
     <section class="section" id="contact">
       <h2>Contact</h2>
-      <p>Replace these with your real WhatsApp number and support email.</p>
+      <p>WhatsApp opens a chat to confirm stock and payment.</p>
 
       <div class="two">
         <div class="panel">
           <b>WhatsApp</b>
-          <p class="muted">Set it in code: <code style="color:var(--text)">WHATSAPP_NUMBER_E164</code></p>
+          <p class="muted">Chat to buy, ask questions, or request sourcing.</p>
           <button class="btn green" style="margin-top:10px" onclick="openWhatsAppGeneral()">Chat on WhatsApp</button>
         </div>
         <div class="panel">
           <b>Email</b>
-          <p class="muted">support@dflowsgadgets.co.uk</p>
+          <p class="muted">support@dflowgadgets.co.uk</p>
           <hr style="border:0;border-top:1px solid var(--line);margin:12px 0" />
           <b>Hours</b>
           <p class="muted">10am–6pm (UK)</p>
@@ -645,9 +813,9 @@
     <footer>
       <div class="foot">
         <div>
-          <b style="color:var(--text)">DFLOWS GADGETS</b>
+          <b style="color:var(--text)">DFLOW GADGETS</b>
           <div style="margin-top:6px">Quality resale gadgets with transparent grading and warranty.</div>
-          <div style="margin-top:10px;font-size:12px">© <span id="year"></span> DFLOWS GADGETS</div>
+          <div style="margin-top:10px;font-size:12px">© <span id="year"></span> DFLOW GADGETS</div>
         </div>
         <div class="footLinks">
           <a href="#shop">Shop</a>
@@ -659,6 +827,9 @@
       </div>
     </footer>
   </main>
+
+  <!-- Back to top -->
+  <button class="toTop" id="toTopBtn" onclick="scrollToSection('top')">↑ Back to top</button>
 
   <!-- Cart Drawer -->
   <div class="overlay" id="overlay"></div>
@@ -753,7 +924,7 @@
             </div>
           </div>
 
-          <div class="panel" style="margin-top:12px" id="sourceNoticeBox">
+          <div class="panel hidden" style="margin-top:12px" id="sourceNoticeBox">
             <b>Order & We Source It notice</b>
             <div class="muted" style="margin-top:6px">
               If your order includes “Order & We Source It” items, we’ll source them after purchase.
@@ -807,7 +978,7 @@
           </div>
 
           <div class="panel" style="margin-top:12px">
-            <b>Why buy from DFLOWS?</b>
+            <b>Why buy from DFLOW?</b>
             <ul>
               <li>Transparent grading (A/B/C)</li>
               <li>Warranty included</li>
@@ -820,30 +991,66 @@
   </div>
 
 <script>
+  /* =======================
+     UTIL + STORAGE KEYS
+  ======================== */
   const GBP = (n) => new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP'}).format(n);
-  const CART_KEY = "DFLOWS_CART_V2_VARIANTS";
-  const ORDERS_KEY = "DFLOWS_ORDERS_V1";
 
-  // ===== WhatsApp (CHANGE THIS) =====
+  const CART_KEY = "DFLOW_CART_V3";
+  const FAV_KEY  = "DFLOW_FAVS_V1";
+  const RECENT_KEY = "DFLOW_RECENT_V1";
+  const ORDERS_KEY = "DFLOW_ORDERS_V1";
+  const THEME_KEY  = "DFLOW_THEME_V1";
+
+  const SOURCE_LABEL = "Order & We Source It";
+
+  // WhatsApp number (your number provided)
   const WHATSAPP_NUMBER_E164 = "447377970202"; // no '+'
-  function waLink(message){
-    return `https://wa.me/${WHATSAPP_NUMBER_E164}?text=${encodeURIComponent(message)}`;
-  }
+  function waLink(message){ return `https://wa.me/${WHATSAPP_NUMBER_E164}?text=${encodeURIComponent(message)}`; }
   function openWhatsAppGeneral(){
-    const msg = "Hi DFLOWS GADGETS, I want to buy a device. Please share what you have available today.";
+    const msg = "Hi DFLOW GADGETS, I want to buy a device. Please share what you have available today.";
     window.open(waLink(msg), "_blank", "noopener");
   }
   window.openWhatsAppGeneral = openWhatsAppGeneral;
 
-  // Friendly word for pre-order (still clear)
-  const SOURCE_LABEL = "Order & We Source It";
+  const $ = (id) => document.getElementById(id);
 
+  function scrollToSection(id){
+    const el = document.getElementById(id);
+    if(el) el.scrollIntoView({behavior:"smooth"});
+  }
+  window.scrollToSection = scrollToSection;
+
+  /* =======================
+     THEME (FIXED)
+  ======================== */
+  function getPreferredTheme(){
+    const saved = localStorage.getItem(THEME_KEY);
+    if(saved === "light" || saved === "dark") return saved;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? "light" : "dark";
+  }
+  function applyTheme(theme){
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem(THEME_KEY, theme);
+    const btn = $("themeBtn");
+    if(btn){
+      btn.textContent = theme === "light" ? "☀️ Light" : "🌙 Dark";
+    }
+  }
+  function toggleTheme(){
+    const current = document.documentElement.getAttribute("data-theme") || "dark";
+    applyTheme(current === "dark" ? "light" : "dark");
+  }
+
+  /* =======================
+     DATA
+  ======================== */
   // Availability: in_stock | source
   const products = [
     {
       id:"a16", name:"Samsung Galaxy A16", category:"Phones", brand:"Samsung",
       grade:"A", warranty:6, deal:true,
-      img:"https://images.unsplash.com/photo-1523206489230-c012c64b2b48?auto=format&fit=crop&w=1200&q=80",
+      img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80",
       availability:{ status:"in_stock", stock:12, leadDays:0 },
       variants:[
         { sku:"a16-64", label:"64GB", price:149.99, was:169.99 },
@@ -851,24 +1058,22 @@
       ],
       specs:{ network:"Unlocked", os:"Android" },
       note:"Grade A — excellent condition, fully tested and ready to use.",
-      highlights:["Unlocked","Tested calls/mic","Camera checked","Fast UK dispatch"]
+      highlights:["Unlocked","Battery/charging tested","Camera checked","Fast UK dispatch"]
     },
     {
       id:"motoe15", name:"Motorola Moto E15", category:"Phones", brand:"Motorola",
       grade:"B", warranty:6, deal:true,
-      img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80",
+      img:"https://images.unsplash.com/photo-1523206489230-c012c64b2b48?auto=format&fit=crop&w=1200&q=80",
       availability:{ status:"in_stock", stock:10, leadDays:0 },
-      variants:[
-        { sku:"motoe15-64", label:"64GB", price:79.99, was:null }
-      ],
+      variants:[ { sku:"motoe15-64", label:"64GB", price:79.99, was:null } ],
       specs:{ network:"Unlocked", os:"Android" },
       note:"Grade B — light cosmetic wear, fully functional and tested.",
-      highlights:["Unlocked","Great budget phone","Tested battery/charging","Cleaned & reset"]
+      highlights:["Unlocked","Great budget phone","Battery tested","Cleaned & reset"]
     },
     {
       id:"ipad8", name:"Apple iPad 8th Gen", category:"iPads", brand:"Apple",
       grade:"B", warranty:6, deal:true,
-      img:"https://images.unsplash.com/photo-1587033411391-5d9f9f0ad6db?auto=format&fit=crop&w=1200&q=80",
+      img:"https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=1200&q=80",
       availability:{ status:"source", stock:0, leadDays:5 },
       variants:[
         { sku:"ipad8-32", label:"32GB (Wi-Fi)", price:199.99, was:229.99 },
@@ -883,9 +1088,7 @@
       grade:"A", warranty:6, deal:false,
       img:"https://images.unsplash.com/photo-1561154464-82e9adf327c3?auto=format&fit=crop&w=1200&q=80",
       availability:{ status:"in_stock", stock:8, leadDays:0 },
-      variants:[
-        { sku:"taba11-64", label:"64GB (Wi-Fi)", price:129.99, was:null }
-      ],
+      variants:[ { sku:"taba11-64", label:"64GB (Wi-Fi)", price:129.99, was:null } ],
       specs:{ network:"Wi-Fi", os:"Android" },
       note:"Grade A — excellent condition, smooth for browsing and media.",
       highlights:["Wi-Fi","Screen checked","Speakers tested","Reset & ready"]
@@ -895,21 +1098,17 @@
       grade:"A", warranty:6, deal:true,
       img:"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1200&q=80",
       availability:{ status:"in_stock", stock:7, leadDays:0 },
-      variants:[
-        { sku:"taba9-64", label:"64GB (Wi-Fi)", price:139.99, was:159.99 }
-      ],
+      variants:[ { sku:"taba9-64", label:"64GB (Wi-Fi)", price:139.99, was:159.99 } ],
       specs:{ network:"Wi-Fi", os:"Android" },
       note:"Grade A — great value Android tablet, tested and clean.",
-      highlights:["Wi-Fi","Fast and smooth","Tested ports","Great for streaming"]
+      highlights:["Wi-Fi","Fast and smooth","Ports tested","Great for streaming"]
     },
     {
       id:"ipad6", name:"Apple iPad 6th Gen 32GB", category:"iPads", brand:"Apple",
       grade:"C", warranty:3, deal:false,
-      img:"https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=1200&q=80",
+      img:"https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=80",
       availability:{ status:"in_stock", stock:9, leadDays:0 },
-      variants:[
-        { sku:"ipad6-32", label:"32GB (Wi-Fi)", price:129.99, was:null }
-      ],
+      variants:[ { sku:"ipad6-32", label:"32GB (Wi-Fi)", price:129.99, was:null } ],
       specs:{ network:"Wi-Fi", os:"iPadOS" },
       note:"Grade C — visible wear, fully functional. Best for budget buyers.",
       highlights:["Wi-Fi","Tested & reset","Affordable","Great for kids/study"]
@@ -919,9 +1118,7 @@
       grade:"A", warranty:3, deal:true,
       img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=1200&q=80",
       availability:{ status:"source", stock:0, leadDays:7 },
-      variants:[
-        { sku:"vasoun7", label:"7-inch (Wi-Fi)", price:49.99, was:null }
-      ],
+      variants:[ { sku:"vasoun7", label:"7-inch (Wi-Fi)", price:49.99, was:null } ],
       specs:{ network:"Wi-Fi", os:"Android", screen:"7-inch" },
       note:"Budget 7-inch Android tablet — ideal for light use and kids.",
       highlights:["Wi-Fi","Lightweight","Great for kids","Budget friendly"]
@@ -944,9 +1141,7 @@
       grade:"B", warranty:6, deal:true,
       img:"https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80",
       availability:{ status:"in_stock", stock:8, leadDays:0 },
-      variants:[
-        { sku:"slim3-4-64", label:"4GB / 64GB", price:149.99, was:null }
-      ],
+      variants:[ { sku:"slim3-4-64", label:"4GB / 64GB", price:149.99, was:null } ],
       specs:{ os:"ChromeOS" },
       note:"Grade B — great Chromebook for students, light wear, fully tested.",
       highlights:["ChromeOS","Fast boot","Battery tested","Perfect for Google Docs"]
@@ -956,25 +1151,131 @@
       grade:"C", warranty:3, deal:false,
       img:"https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=1200&q=80",
       availability:{ status:"in_stock", stock:10, leadDays:0 },
-      variants:[
-        { sku:"hp11g8-4-32", label:"4GB / 32GB", price:99.99, was:null }
-      ],
+      variants:[ { sku:"hp11g8-4-32", label:"4GB / 32GB", price:99.99, was:null } ],
       specs:{ os:"ChromeOS", screen:"11-inch" },
       note:"Grade C — visible wear. Fully working, ideal as a budget school laptop.",
-      highlights:["ChromeOS","Tested ports","Affordable","Great for students"]
+      highlights:["ChromeOS","Ports tested","Affordable","Great for students"]
+    },
+
+    // --- EXTRA ITEMS ---
+    { id:"iphone11", name:"Apple iPhone 11", category:"Phones", brand:"Apple", grade:"B", warranty:6, deal:true,
+      img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"in_stock", stock:6, leadDays:0},
+      variants:[{sku:"ip11-64", label:"64GB", price:179.99, was:209.99},{sku:"ip11-128", label:"128GB", price:209.99, was:239.99}],
+      specs:{network:"Unlocked", os:"iOS"}, note:"Grade B — strong value iPhone, tested and reset.",
+      highlights:["Unlocked","Battery checked","Face ID tested","Fast dispatch"]
+    },
+    { id:"iphone12", name:"Apple iPhone 12", category:"Phones", brand:"Apple", grade:"B", warranty:6, deal:false,
+      img:"https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"source", stock:0, leadDays:6},
+      variants:[{sku:"ip12-64", label:"64GB", price:259.99, was:null},{sku:"ip12-128", label:"128GB", price:299.99, was:null}],
+      specs:{network:"Unlocked", os:"iOS"}, note:"Order & We Source It — estimated dispatch shown.",
+      highlights:["Unlocked","5G model","Tested & reset","Sourced to order"]
+    },
+    { id:"s21", name:"Samsung Galaxy S21", category:"Phones", brand:"Samsung", grade:"B", warranty:6, deal:true,
+      img:"https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"in_stock", stock:4, leadDays:0},
+      variants:[{sku:"s21-128", label:"128GB", price:219.99, was:249.99}],
+      specs:{network:"Unlocked", os:"Android"}, note:"Grade B — tested, great camera and performance.",
+      highlights:["Unlocked","Camera checked","Charging tested","Fast dispatch"]
+    },
+    { id:"pixel6a", name:"Google Pixel 6a", category:"Phones", brand:"Google", grade:"A", warranty:6, deal:false,
+      img:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"in_stock", stock:7, leadDays:0},
+      variants:[{sku:"p6a-128", label:"128GB", price:189.99, was:null}],
+      specs:{network:"Unlocked", os:"Android"}, note:"Grade A — clean condition, excellent camera.",
+      highlights:["Unlocked","Camera checked","Screen tested","Clean & reset"]
+    },
+    { id:"ipad9", name:"Apple iPad 9th Gen", category:"iPads", brand:"Apple", grade:"A", warranty:6, deal:true,
+      img:"https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"in_stock", stock:6, leadDays:0},
+      variants:[{sku:"ipad9-64", label:"64GB (Wi-Fi)", price:239.99, was:269.99}],
+      specs:{network:"Wi-Fi", os:"iPadOS"}, note:"Grade A — ideal for study and entertainment.",
+      highlights:["Wi-Fi","Tested & reset","Great battery","Deal"]
+    },
+    { id:"ipad10", name:"Apple iPad 10th Gen", category:"iPads", brand:"Apple", grade:"B", warranty:6, deal:false,
+      img:"https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"source", stock:0, leadDays:7},
+      variants:[{sku:"ipad10-64", label:"64GB (Wi-Fi)", price:299.99, was:null}],
+      specs:{network:"Wi-Fi", os:"iPadOS"}, note:"Order & We Source It — dispatch estimate shown.",
+      highlights:["Wi-Fi","Tested & reset","Modern design","Sourced to order"]
+    },
+    { id:"tabS6Lite", name:"Samsung Galaxy Tab S6 Lite", category:"Tablets", brand:"Samsung", grade:"B", warranty:6, deal:true,
+      img:"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"in_stock", stock:5, leadDays:0},
+      variants:[{sku:"s6l-64", label:"64GB (Wi-Fi)", price:179.99, was:199.99}],
+      specs:{network:"Wi-Fi", os:"Android"}, note:"Grade B — good value tablet for media and notes.",
+      highlights:["Wi-Fi","Screen checked","Good battery","Deal"]
+    },
+    { id:"tabA8", name:"Samsung Galaxy Tab A8", category:"Tablets", brand:"Samsung", grade:"A", warranty:6, deal:false,
+      img:"https://images.unsplash.com/photo-1561154464-82e9adf327c3?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"in_stock", stock:7, leadDays:0},
+      variants:[{sku:"a8-64", label:"64GB (Wi-Fi)", price:119.99, was:null}],
+      specs:{network:"Wi-Fi", os:"Android"}, note:"Grade A — smooth for browsing, YouTube, Netflix.",
+      highlights:["Wi-Fi","Speakers tested","Reset & ready","Fast dispatch"]
+    },
+    { id:"acerAspire", name:"Acer Aspire 5 (Windows Laptop)", category:"Laptops", brand:"Acer", grade:"B", warranty:6, deal:true,
+      img:"https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"in_stock", stock:3, leadDays:0},
+      variants:[{sku:"asp5-8-256", label:"8GB / 256GB SSD", price:279.99, was:319.99}],
+      specs:{os:"Windows 11", storage:"SSD"}, note:"Grade B — reliable Windows laptop, good for office/uni.",
+      highlights:["SSD storage","Webcam + Wi-Fi","Battery tested","Deal"]
+    },
+    { id:"dellLat", name:"Dell Latitude 5420", category:"Laptops", brand:"Dell", grade:"A", warranty:12, deal:false,
+      img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"in_stock", stock:4, leadDays:0},
+      variants:[{sku:"lat-16-512", label:"16GB / 512GB SSD", price:399.99, was:null}],
+      specs:{os:"Windows 11 Pro", storage:"SSD"}, note:"Grade A — business laptop, fast and durable.",
+      highlights:["Windows 11 Pro","16GB RAM","Great keyboard","12-month warranty"]
+    },
+    { id:"macairm1", name:"MacBook Air M1", category:"Laptops", brand:"Apple", grade:"B", warranty:6, deal:true,
+      img:"https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"source", stock:0, leadDays:6},
+      variants:[{sku:"m1-8-256", label:"8GB / 256GB", price:549.99, was:599.99}],
+      specs:{os:"macOS", cpu:"Apple M1"}, note:"Order & We Source It — dispatch estimate shown.",
+      highlights:["M1 chip","Battery strong","Tested & reset","Deal"]
+    },
+    { id:"nokiaC21", name:"Nokia C21", category:"Phones", brand:"Nokia", grade:"A", warranty:6, deal:false,
+      img:"https://images.unsplash.com/photo-1523206489230-c012c64b2b48?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"in_stock", stock:10, leadDays:0},
+      variants:[{sku:"c21-32", label:"32GB", price:59.99, was:null}],
+      specs:{network:"Unlocked", os:"Android"}, note:"Grade A — simple and reliable budget phone.",
+      highlights:["Unlocked","Calls tested","Charging tested","Clean & reset"]
+    },
+    { id:"surfaceGo", name:"Microsoft Surface Go 2", category:"Tablets", brand:"Microsoft", grade:"B", warranty:6, deal:false,
+      img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80",
+      availability:{status:"in_stock", stock:3, leadDays:0},
+      variants:[{sku:"go2-8-128", label:"8GB / 128GB", price:249.99, was:null}],
+      specs:{os:"Windows 11", type:"2-in-1"}, note:"Grade B — flexible tablet/laptop for travel and study.",
+      highlights:["Touchscreen","Portable","Battery tested","Fast dispatch"]
     }
   ];
 
-  // State
-  const state = { q:"", category:"All", grade:"All", sort:"popular", cart: loadCart() };
-  const $ = (id) => document.getElementById(id);
+  /* =======================
+     STATE
+  ======================== */
+  const state = {
+    q:"",
+    category:"All",
+    grade:"All",
+    sort:"popular",
+    cart: loadJson(CART_KEY, {}),
+    favs: loadJson(FAV_KEY, []),
+    recently: loadJson(RECENT_KEY, []),
+    visibleCount: 8   // load more system
+  };
 
-  function scrollToSection(id){
-    const el = document.getElementById(id);
-    if(el) el.scrollIntoView({behavior:"smooth"});
+  function loadJson(key, fallback){
+    try{ return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); }
+    catch{ return fallback; }
   }
-  window.scrollToSection = scrollToSection;
+  function saveJson(key, value){
+    localStorage.setItem(key, JSON.stringify(value));
+  }
 
+  /* =======================
+     HELPERS
+  ======================== */
   function gradeClass(g){ return (g==='A')?'a':(g==='B')?'b':'c'; }
   function gradeLabel(g){ return (g==='A')?'Grade A':(g==='B')?'Grade B':'Grade C'; }
 
@@ -998,19 +1299,62 @@
     return `${SOURCE_LABEL} • Estimated dispatch by ${d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}`;
   }
 
-  // Cart key is "pid__sku"
+  /* =======================
+     FAVOURITES (FIXED)
+  ======================== */
+  function isFav(pid){ return state.favs.includes(pid); }
+  function toggleFav(pid){
+    if(isFav(pid)) state.favs = state.favs.filter(x => x !== pid);
+    else state.favs = [pid, ...state.favs].slice(0, 80);
+    saveJson(FAV_KEY, state.favs);
+    renderProducts();
+    renderRecently();
+  }
+
+  /* =======================
+     RECENTLY VIEWED (FIXED)
+  ======================== */
+  function pushRecent(pid){
+    state.recently = [pid, ...state.recently.filter(x => x !== pid)].slice(0, 12);
+    saveJson(RECENT_KEY, state.recently);
+    renderRecently();
+  }
+
+  function renderRecently(){
+    const grid = $("recentGrid");
+    grid.innerHTML = "";
+    const ids = state.recently.slice(0, 8);
+    if(ids.length === 0){
+      grid.innerHTML = `<div class="panel" style="grid-column:1/-1"><b>No recently viewed</b><div class="muted" style="margin-top:6px">Open a product to see it here.</div></div>`;
+      return;
+    }
+    ids.forEach(id=>{
+      const p = products.find(x=>x.id===id);
+      if(!p) return;
+      const el = document.createElement("div");
+      el.className = "rvCard";
+      el.onclick = ()=>openProduct(p.id, true);
+      el.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <div style="min-width:0">
+          <div style="font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div>
+          <div class="muted" style="font-size:12px;margin-top:4px">${p.brand} • From ${GBP(getMinPrice(p))}</div>
+        </div>
+      `;
+      grid.appendChild(el);
+    });
+  }
+
+  /* =======================
+     CART
+  ======================== */
   function parseCartKey(key){
     const [pid, sku] = key.split("__");
     const p = products.find(x=>x.id===pid);
     return { p, sku, pid };
   }
+  function saveCart(){ saveJson(CART_KEY, state.cart); }
 
-  function loadCart(){
-    try { return JSON.parse(localStorage.getItem(CART_KEY) || "{}"); } catch { return {}; }
-  }
-  function saveCart(){
-    localStorage.setItem(CART_KEY, JSON.stringify(state.cart));
-  }
   function cartCount(){
     return Object.values(state.cart).reduce((s,n)=>s+n,0);
   }
@@ -1022,37 +1366,12 @@
     },0);
   }
 
-  function setCategory(cat){
-    state.category = cat;
-    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-    const chip = document.querySelector(`.chip[data-chip="${cat}"]`) || document.querySelector(`.chip[data-chip="All"]`);
-    if(chip) chip.classList.add('active');
-    $('categorySelect').value = cat;
-    renderProducts();
-    scrollToSection('shop');
-  }
-
-  function filteredProducts(){
-    let list = [...products];
-    if(state.category === 'Deals') list = list.filter(p => p.deal);
-    else if(state.category !== 'All') list = list.filter(p => p.category === state.category);
-    if(state.grade !== 'All') list = list.filter(p => p.grade === state.grade);
-    if(state.q.trim()){
-      const q = state.q.toLowerCase();
-      list = list.filter(p => `${p.name} ${p.brand} ${p.category}`.toLowerCase().includes(q));
-    }
-    if(state.sort === 'low') list.sort((a,b)=>getMinPrice(a)-getMinPrice(b));
-    if(state.sort === 'high') list.sort((a,b)=>getMinPrice(b)-getMinPrice(a));
-    return list;
-  }
-
-  function addToCartCartKey(cartKey){
+  function addToCart(cartKey){
     state.cart[cartKey] = (state.cart[cartKey] || 0) + 1;
     saveCart();
     renderCart();
     openCart();
   }
-
   function decFromCart(cartKey){
     state.cart[cartKey] = (state.cart[cartKey]||0) - 1;
     if(state.cart[cartKey] <= 0) delete state.cart[cartKey];
@@ -1060,27 +1379,75 @@
     renderCart();
   }
 
-  function renderProducts(){
-    const grid = $('productGrid');
-    grid.innerHTML = '';
-    const list = filteredProducts();
+  /* =======================
+     FILTERING + LOAD MORE/LESS
+  ======================== */
+  function setCategory(cat){
+    state.category = cat;
+    $("categorySelect").value = cat;
 
-    if(list.length === 0){
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    const chip = document.querySelector(`.chip[data-chip="${cat}"]`) || document.querySelector(`.chip[data-chip="All"]`);
+    if(chip) chip.classList.add('active');
+
+    // reset load count when switching categories
+    state.visibleCount = 8;
+    renderProducts();
+    scrollToSection('shop');
+  }
+  window.setCategory = setCategory;
+
+  function filteredProducts(){
+    let list = [...products];
+
+    // category logic
+    if(state.category === 'Deals') list = list.filter(p => p.deal);
+    else if(state.category === 'Favourites') list = list.filter(p => isFav(p.id));
+    else if(state.category !== 'All') list = list.filter(p => p.category === state.category);
+
+    // grade
+    if(state.grade !== 'All') list = list.filter(p => p.grade === state.grade);
+
+    // search
+    if(state.q.trim()){
+      const q = state.q.toLowerCase();
+      list = list.filter(p => `${p.name} ${p.brand} ${p.category}`.toLowerCase().includes(q));
+    }
+
+    // sort
+    if(state.sort === 'low') list.sort((a,b)=>getMinPrice(a)-getMinPrice(b));
+    if(state.sort === 'high') list.sort((a,b)=>getMinPrice(b)-getMinPrice(a));
+
+    return list;
+  }
+
+  function renderProducts(){
+    const grid = $("productGrid");
+    grid.innerHTML = "";
+    const listAll = filteredProducts();
+
+    const list = listAll.slice(0, state.visibleCount);
+
+    if(listAll.length === 0){
       grid.innerHTML = `<div class="panel" style="grid-column:1/-1"><b>No results</b><div class="muted" style="margin-top:6px">Try another search or category.</div></div>`;
+      $("loadMoreBtn").style.display = "none";
+      $("loadLessBtn").style.display = "none";
       return;
     }
 
     list.forEach(p=>{
-      const card = document.createElement('div');
-      card.className = 'card';
+      const isF = isFav(p.id);
+
+      const card = document.createElement("div");
+      card.className = "card";
       card.innerHTML = `
-        <div class="thumb"><img src="${p.img}" alt="${p.name}"></div>
+        <div class="thumb"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
         <div class="body">
           <div class="title">${p.name}</div>
           <div class="meta">${p.brand} • ${p.category} • Warranty ${p.warranty}m</div>
           <div class="badges">
             <span class="badge ${gradeClass(p.grade)}">${gradeLabel(p.grade)}</span>
-            ${p.deal ? `<span class="badge">Deal</span>` : ``}
+            ${p.deal ? `<span class="badge deal">Deal</span>` : ``}
             <span class="badge">${availabilityText(p)}</span>
             <span class="badge">${dispatchDateText(p)}</span>
           </div>
@@ -1090,6 +1457,7 @@
               <div class="was">${p.variants[0].was ? GBP(p.variants[0].was) : '&nbsp;'}</div>
             </div>
             <div class="cardActions">
+              <button class="favBtn ${isF ? 'active':''}" data-fav="${p.id}" title="Save to favourites">${isF ? '❤' : '♡'}</button>
               <button class="btn sm" data-view="${p.id}">View</button>
               <button class="btn sm primary" data-addfirst="${p.id}">Add</button>
             </div>
@@ -1099,37 +1467,77 @@
       grid.appendChild(card);
     });
 
-    grid.querySelectorAll('[data-view]').forEach(btn=>{
-      btn.addEventListener('click', (e)=>openProduct(e.currentTarget.getAttribute('data-view'), true));
+    // bind events
+    grid.querySelectorAll("[data-view]").forEach(btn=>{
+      btn.addEventListener("click",(e)=>openProduct(e.currentTarget.getAttribute("data-view"), true));
     });
-
-    // Add first variant quickly
-    grid.querySelectorAll('[data-addfirst]').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
-        const id = e.currentTarget.getAttribute('data-addfirst');
+    grid.querySelectorAll("[data-addfirst]").forEach(btn=>{
+      btn.addEventListener("click",(e)=>{
+        const id = e.currentTarget.getAttribute("data-addfirst");
         const p = products.find(x=>x.id===id);
         if(!p) return;
-        const v = p.variants[0];
-        addToCartCartKey(`${p.id}__${v.sku}`);
+        addToCart(`${p.id}__${p.variants[0].sku}`);
       });
     });
+    grid.querySelectorAll("[data-fav]").forEach(btn=>{
+      btn.addEventListener("click",(e)=>{
+        const id = e.currentTarget.getAttribute("data-fav");
+        toggleFav(id);
+      });
+    });
+
+    // load buttons
+    const moreBtn = $("loadMoreBtn");
+    const lessBtn = $("loadLessBtn");
+
+    if(state.visibleCount < listAll.length){
+      moreBtn.style.display = "inline-flex";
+    } else {
+      moreBtn.style.display = "none";
+    }
+
+    if(state.visibleCount > 8){
+      lessBtn.style.display = "inline-flex";
+    } else {
+      lessBtn.style.display = "none";
+    }
   }
+
+  $("loadMoreBtn").addEventListener("click", ()=>{
+    state.visibleCount += 8;
+    renderProducts();
+  });
+  $("loadLessBtn").addEventListener("click", ()=>{
+    state.visibleCount = 8;
+    renderProducts();
+    scrollToSection("shop");
+  });
+
+  /* =======================
+     CART DRAWER
+  ======================== */
+  function openCart(){ $("drawer").classList.add("open"); $("overlay").classList.add("show"); }
+  function closeCart(){ $("drawer").classList.remove("open"); $("overlay").classList.remove("show"); }
+  window.closeCart = closeCart;
+
+  $("cartBtn").addEventListener("click", openCart);
+  $("overlay").addEventListener("click", closeCart);
 
   function renderCart(){
     const count = cartCount();
-    const cc = $('cartCount');
+    const cc = $("cartCount");
     if(count>0){ cc.style.display='inline-flex'; cc.textContent = count; }
     else { cc.style.display='none'; cc.textContent=''; }
 
-    $('subtotal').textContent = GBP(subtotal());
+    $("subtotal").textContent = GBP(subtotal());
 
-    const items = $('cartItems');
-    items.innerHTML = '';
+    const items = $("cartItems");
+    items.innerHTML = "";
     const entries = Object.entries(state.cart);
 
     if(entries.length === 0){
       items.innerHTML = `<div class="muted" style="font-size:14px">Your cart is empty.</div>`;
-      if($('checkoutModal').classList.contains('show')) updateCheckoutSummary();
+      if($("checkoutModal").classList.contains("show")) updateCheckoutSummary();
       return;
     }
 
@@ -1138,8 +1546,8 @@
       if(!p) return;
       const v = getVariant(p, sku);
 
-      const row = document.createElement('div');
-      row.className = 'item';
+      const row = document.createElement("div");
+      row.className = "item";
       row.innerHTML = `
         <img src="${p.img}" alt="${p.name}">
         <div style="flex:1">
@@ -1159,74 +1567,70 @@
       items.appendChild(row);
     });
 
-    items.querySelectorAll('[data-dec]').forEach(b=>{
-      b.addEventListener('click',(e)=>decFromCart(e.currentTarget.getAttribute('data-dec')));
+    items.querySelectorAll("[data-dec]").forEach(b=>{
+      b.addEventListener("click",(e)=>decFromCart(e.currentTarget.getAttribute("data-dec")));
     });
-    items.querySelectorAll('[data-inc]').forEach(b=>{
-      b.addEventListener('click',(e)=>addToCartCartKey(e.currentTarget.getAttribute('data-inc')));
+    items.querySelectorAll("[data-inc]").forEach(b=>{
+      b.addEventListener("click",(e)=>addToCart(e.currentTarget.getAttribute("data-inc")));
     });
 
-    if($('checkoutModal').classList.contains('show')) updateCheckoutSummary();
+    if($("checkoutModal").classList.contains("show")) updateCheckoutSummary();
   }
 
-  // Drawer
-  function openCart(){ $('drawer').classList.add('open'); $('overlay').classList.add('show'); }
-  function closeCart(){ $('drawer').classList.remove('open'); $('overlay').classList.remove('show'); }
-  window.closeCart = closeCart;
-
-  $('cartBtn').addEventListener('click', openCart);
-  $('overlay').addEventListener('click', closeCart);
-
-  // Product modal + URL
+  /* =======================
+     PRODUCT MODAL + URL + RECENTLY
+  ======================== */
   function openProduct(id, pushUrl){
     const p = products.find(x=>x.id===id);
     if(!p) return;
 
-    $('mTitle').textContent = p.name;
-    $('mMeta').textContent = `${p.brand} • ${p.category} • ${gradeLabel(p.grade)} • Warranty ${p.warranty} months`;
-    $('mImg').src = p.img;
+    pushRecent(p.id);
 
-    $('mBadges').innerHTML = `
+    $("mTitle").textContent = p.name;
+    $("mMeta").textContent = `${p.brand} • ${p.category} • ${gradeLabel(p.grade)} • Warranty ${p.warranty} months`;
+    $("mImg").src = p.img;
+
+    $("mBadges").innerHTML = `
       <span class="badge ${gradeClass(p.grade)}">${gradeLabel(p.grade)}</span>
-      ${p.deal ? `<span class="badge">Deal</span>` : ``}
+      ${p.deal ? `<span class="badge deal">Deal</span>` : ``}
       <span class="badge">${availabilityText(p)}</span>
     `;
 
-    $('mNote').textContent = p.note;
+    $("mNote").textContent = p.note;
 
     const s = p.specs || {};
     const specsText = Object.entries(s).map(([k,v])=>`${k.toUpperCase()}: ${v}`).join(" • ");
-    $('mSpecs').textContent = specsText || "Specs coming soon.";
+    $("mSpecs").textContent = specsText || "Specs coming soon.";
 
-    $('mList').innerHTML = (p.highlights || []).map(h=>`<li>${h}</li>`).join('');
-    $('mStock').textContent = dispatchDateText(p);
+    $("mList").innerHTML = (p.highlights || []).map(h=>`<li>${h}</li>`).join("");
+    $("mStock").textContent = dispatchDateText(p);
 
-    const vSel = $('mVariant');
+    const vSel = $("mVariant");
     vSel.innerHTML = p.variants.map(v => `<option value="${v.sku}">${v.label} — ${GBP(v.price)}</option>`).join("");
 
     function applyVariant(sku){
       const v = getVariant(p, sku);
-      $('mPrice').textContent = GBP(v.price);
-      $('mWas').textContent = v.was ? `Was ${GBP(v.was)}` : "";
-      $('mDispatch').textContent = dispatchDateText(p);
+      $("mPrice").textContent = GBP(v.price);
+      $("mWas").textContent = v.was ? `Was ${GBP(v.was)}` : "";
+      $("mDispatch").textContent = dispatchDateText(p);
 
       const msg =
-`Hi DFLOWS GADGETS, I want to buy:
+`Hi DFLOW GADGETS, I want to buy:
 ${p.name} (${v.label})
 Price: ${GBP(v.price)}
 Condition: ${gradeLabel(p.grade)}
 ${dispatchDateText(p)}
 
 Please confirm availability and how to pay.`;
-      $('mWhatsApp').href = waLink(msg);
+      $("mWhatsApp").href = waLink(msg);
 
-      $('mAdd').onclick = ()=>addToCartCartKey(`${p.id}__${v.sku}`);
+      $("mAdd").onclick = ()=>addToCart(`${p.id}__${v.sku}`);
     }
 
     applyVariant(p.variants[0].sku);
     vSel.onchange = () => applyVariant(vSel.value);
 
-    $('productModal').classList.add('show');
+    $("productModal").classList.add("show");
 
     if(pushUrl){
       const u = new URL(window.location.href);
@@ -1236,20 +1640,28 @@ Please confirm availability and how to pay.`;
   }
 
   function closeProduct(){
-    $('productModal').classList.remove('show');
+    $("productModal").classList.remove("show");
     const u = new URL(window.location.href);
     u.searchParams.delete("product");
     history.pushState({}, "", u.toString());
   }
   window.closeProduct = closeProduct;
 
-  // Checkout
+  function loadProductFromUrl(){
+    const u = new URL(window.location.href);
+    const pid = u.searchParams.get("product");
+    if(pid) openProduct(pid, false);
+  }
+
+  /* =======================
+     CHECKOUT (DEMO)
+  ======================== */
   function openCheckout(){
-    $('checkoutModal').classList.add('show');
-    $('orderSuccess').classList.add('hidden');
+    $("checkoutModal").classList.add("show");
+    $("orderSuccess").classList.add("hidden");
     updateCheckoutSummary();
   }
-  function closeCheckout(){ $('checkoutModal').classList.remove('show'); }
+  function closeCheckout(){ $("checkoutModal").classList.remove("show"); }
   window.openCheckout = openCheckout;
   window.closeCheckout = closeCheckout;
 
@@ -1257,11 +1669,11 @@ Please confirm availability and how to pay.`;
     const entries = Object.entries(state.cart);
 
     if(entries.length === 0){
-      $('coSummary').textContent = "Your cart is empty.";
-      $('coSubtotal').textContent = GBP(0);
-      $('coShipCost').textContent = GBP(0);
-      $('coTotal').textContent = GBP(0);
-      $('sourceNoticeBox').classList.add('hidden');
+      $("coSummary").textContent = "Your cart is empty.";
+      $("coSubtotal").textContent = GBP(0);
+      $("coShipCost").textContent = GBP(0);
+      $("coTotal").textContent = GBP(0);
+      $("sourceNoticeBox").classList.add("hidden");
       return;
     }
 
@@ -1271,29 +1683,27 @@ Please confirm availability and how to pay.`;
       const v = getVariant(p, sku);
       return `${qty}× ${p.name} (${v.label}) <span class="muted">• ${availabilityText(p)}</span>`;
     }).filter(Boolean).join("<br>");
-    $('coSummary').innerHTML = lines;
+    $("coSummary").innerHTML = lines;
 
     const sub = subtotal();
-    const ship = $('coShipping').value === "express" ? 6.99 : 3.99;
+    const ship = $("coShipping").value === "express" ? 6.99 : 3.99;
 
-    $('coSubtotal').textContent = GBP(sub);
-    $('coShipCost').textContent = GBP(ship);
-    $('coTotal').textContent = GBP(sub + ship);
+    $("coSubtotal").textContent = GBP(sub);
+    $("coShipCost").textContent = GBP(ship);
+    $("coTotal").textContent = GBP(sub + ship);
 
-    // show notice only if sourced items exist
     const hasSourced = Object.keys(state.cart).some(k=>{
       const { p } = parseCartKey(k);
       return p && isSourced(p);
     });
-    $('sourceNoticeBox').classList.toggle('hidden', !hasSourced);
-    if(!hasSourced) $('sourceAccept').checked = false;
+    $("sourceNoticeBox").classList.toggle("hidden", !hasSourced);
+    if(!hasSourced) $("sourceAccept").checked = false;
   }
 
-  $('coShipping').addEventListener('change', updateCheckoutSummary);
+  $("coShipping").addEventListener("change", updateCheckoutSummary);
 
-  // Orders
-  function loadOrders(){ try { return JSON.parse(localStorage.getItem(ORDERS_KEY) || "{}"); } catch { return {}; } }
-  function saveOrders(o){ localStorage.setItem(ORDERS_KEY, JSON.stringify(o)); }
+  function loadOrders(){ return loadJson(ORDERS_KEY, {}); }
+  function saveOrders(o){ saveJson(ORDERS_KEY, o); }
   function randomId(){ return `DF-${Math.floor(100000 + Math.random()*900000)}`; }
 
   function placeOrder(){
@@ -1303,14 +1713,14 @@ Please confirm availability and how to pay.`;
       const { p } = parseCartKey(k);
       return p && isSourced(p);
     });
-    if(hasSourced && !$('sourceAccept').checked){
+    if(hasSourced && !$("sourceAccept").checked){
       alert(`Please accept the “${SOURCE_LABEL}” notice to continue.`);
       return;
     }
 
-    const name = $('coName').value.trim();
-    const email = $('coEmail').value.trim();
-    const address = $('coAddress').value.trim();
+    const name = $("coName").value.trim();
+    const email = $("coEmail").value.trim();
+    const address = $("coAddress").value.trim();
     if(!name || !email || !address){
       alert("Please fill name, email and address.");
       return;
@@ -1322,7 +1732,7 @@ Please confirm availability and how to pay.`;
       id,
       createdAt: new Date().toISOString(),
       name, email, address,
-      shipping: $('coShipping').value,
+      shipping: $("coShipping").value,
       cart: state.cart,
       subtotal: subtotal(),
       statusIndex: 0,
@@ -1330,28 +1740,24 @@ Please confirm availability and how to pay.`;
     };
     saveOrders(orders);
 
-    // clear cart
     state.cart = {};
     saveCart();
     renderCart();
     updateCheckoutSummary();
 
-    $('orderSuccess').classList.remove('hidden');
-    $('orderIdText').textContent = id;
-
-    // auto fill track box
-    $('trackId').value = id;
+    $("orderSuccess").classList.remove("hidden");
+    $("orderIdText").textContent = id;
+    $("trackId").value = id;
   }
   window.placeOrder = placeOrder;
 
-  // Track order demo
   function trackOrder(){
-    const id = $('trackId').value.trim();
+    const id = $("trackId").value.trim();
     const orders = loadOrders();
     const o = orders[id];
 
     if(!o){
-      $('trackResult').innerHTML = `<b>Status</b><div class="muted" style="margin-top:6px">No order found for "${id}".</div>`;
+      $("trackResult").innerHTML = `<b>Status</b><div class="muted" style="margin-top:6px">No order found for "${id}".</div>`;
       return;
     }
 
@@ -1362,7 +1768,7 @@ Please confirm availability and how to pay.`;
     }
 
     const status = o.statusFlow[o.statusIndex];
-    $('trackResult').innerHTML = `
+    $("trackResult").innerHTML = `
       <b>Status</b>
       <div class="muted" style="margin-top:6px">Order: <strong style="color:var(--text)">${o.id}</strong></div>
       <div class="muted" style="margin-top:6px">Current status: <strong style="color:var(--text)">${status}</strong></div>
@@ -1371,24 +1777,25 @@ Please confirm availability and how to pay.`;
   }
   window.trackOrder = trackOrder;
 
-  // Sell quote calculator
+  /* =======================
+     SELL QUOTE
+  ======================== */
   function calcSellQuote(){
-    const id = $('sellDevice').value;
+    const id = $("sellDevice").value;
     if(!id){
-      $('sellResult').innerHTML = `<b>Estimate:</b><div class="muted" style="margin-top:6px">Please choose a device.</div>`;
+      $("sellResult").innerHTML = `<b>Estimate:</b><div class="muted" style="margin-top:6px">Please choose a device.</div>`;
       return;
     }
     const p = products.find(x=>x.id===id);
-    const grade = $('sellGrade').value;
-    const includes = $('sellIncludes').value;
+    const grade = $("sellGrade").value;
+    const includes = $("sellIncludes").value;
 
-    // base on cheapest variant
     const base = getMinPrice(p);
     const gradeMult = grade === "A" ? 0.60 : grade === "B" ? 0.50 : 0.40;
     const includeAdj = includes === "full" ? 1.00 : 0.93;
     const estimate = Math.max(10, base * gradeMult * includeAdj);
 
-    $('sellResult').innerHTML = `
+    $("sellResult").innerHTML = `
       <b>Estimate:</b>
       <div class="muted" style="margin-top:6px">
         Device: <strong style="color:var(--text)">${p.name}</strong><br>
@@ -1403,49 +1810,62 @@ Please confirm availability and how to pay.`;
   }
   window.calcSellQuote = calcSellQuote;
 
-  // Populate sell dropdown
   function initSellList(){
-    const sel = $('sellDevice');
+    const sel = $("sellDevice");
     products.forEach(p=>{
-      const opt = document.createElement('option');
+      const opt = document.createElement("option");
       opt.value = p.id;
       opt.textContent = `${p.name} (${p.category})`;
       sel.appendChild(opt);
     });
   }
 
-  // Filters/search
-  $('searchGlobal').addEventListener('input', e=>{
+  /* =======================
+     EVENTS
+  ======================== */
+  $("searchGlobal").addEventListener("input", e=>{
     state.q = e.target.value.trim();
+    state.visibleCount = 8;
     renderProducts();
-    scrollToSection('shop');
+    scrollToSection("shop");
   });
 
-  $('categorySelect').addEventListener('change', e=>{
-    state.category = e.target.value;
-    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-    const chip = document.querySelector(`.chip[data-chip="${state.category}"]`) || document.querySelector(`.chip[data-chip="All"]`);
-    if(chip) chip.classList.add('active');
+  $("categorySelect").addEventListener("change", e=>{
+    setCategory(e.target.value);
+  });
+
+  $("gradeSelect").addEventListener("change", e=>{
+    state.grade = e.target.value;
+    state.visibleCount = 8;
     renderProducts();
   });
 
-  $('gradeSelect').addEventListener('change', e=>{ state.grade = e.target.value; renderProducts(); });
-  $('sortSelect').addEventListener('change', e=>{ state.sort = e.target.value; renderProducts(); });
-
-  document.querySelectorAll('.chip').forEach(ch=>{
-    ch.addEventListener('click', ()=>setCategory(ch.getAttribute('data-chip')));
+  $("sortSelect").addEventListener("change", e=>{
+    state.sort = e.target.value;
+    renderProducts();
   });
 
-  // URL product param support
-  function loadProductFromUrl(){
-    const u = new URL(window.location.href);
-    const pid = u.searchParams.get("product");
-    if(pid) openProduct(pid, false);
-  }
+  document.querySelectorAll(".chip").forEach(ch=>{
+    ch.addEventListener("click", ()=>setCategory(ch.getAttribute("data-chip")));
+  });
 
-  // Init
-  $('year').textContent = new Date().getFullYear();
+  $("themeBtn").addEventListener("click", toggleTheme);
+
+  // Back to top visibility
+  window.addEventListener("scroll", ()=>{
+    const btn = $("toTopBtn");
+    if(window.scrollY > 700) btn.classList.add("show");
+    else btn.classList.remove("show");
+  });
+
+  /* =======================
+     INIT
+  ======================== */
+  $("year").textContent = new Date().getFullYear();
+  applyTheme(getPreferredTheme());
+
   initSellList();
+  renderRecently();
   renderProducts();
   renderCart();
   loadProductFromUrl();
